@@ -374,5 +374,188 @@
                 "posted_date": "2024-09-11"
             }
         ]
-    }
+    },
+
+    
+    {
+    "id": 9,
+    "product_images": [
+         "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726562682/blue-300x300-removebg-preview_cjrxvu.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726560109/41zB5QDUesL._AC_SX385_-removebg-preview_x9wfrp.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726560219/41qYZ0HeHDL._AC_UY1000_-removebg-preview_n6mwwi.png"
+    ],
+    "product_title": "Trendy Sneakers Shirt",
+    "product_price": 150.00,
+    "product_discount_price": 180.00,
+    "product_rating": 4.3,
+    "product_discount_percent": 16.7,
+    "product_description": "Stylish sneakers designed for comfort and durability. Features a cushioned sole and modern design.",
+    "product_size": ["6", "7", "8", "9", "10"],
+    "product_review": [
+        {
+            "author": "Lily Anderson",
+            "description": "Very comfortable and stylish. Great for everyday wear.",
+            "posted_date": "2024-09-02"
+        },
+        {
+            "author": "Jack Wilson",
+            "description": "The sneakers look good, but they felt a bit tight at first.",
+            "posted_date": "2024-09-04"
+        },
+        {
+            "author": "Charlotte Brown",
+            "description": "Nice quality and design, though the color was slightly off from the pictures.",
+            "posted_date": "2024-09-06"
+        },
+        {
+            "author": "Aiden Lee",
+            "description": "Good sneakers overall, but the sole started wearing out quicker than expected.",
+            "posted_date": "2024-09-08"
+        },
+        {
+            "author": "Mia Martinez",
+            "description": "Comfortable and trendy. Perfect for both casual and semi-formal occasions.",
+            "posted_date": "2024-09-10"
+        },
+        {
+            "author": "Noah Harris",
+            "description": "Great sneakers for the price. Delivery was a bit delayed, though.",
+            "posted_date": "2024-09-12"
+        }
+      ]
+    },
+
+    {
+    "id": 10,
+    "product_images": [
+          "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726559265/image_7-removebg-preview_yzhicn_msamuy_1_-removebg-preview_mcfold.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726560390/aaf25481a8ff059572d33a7ae6305c98.jpg_720x720q80-removebg-preview_hcxa6d.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726559292/Frame_32_yzi1mo_1_-removebg-preview_unp3sf.png"
+    ],
+    "product_title": "Summer Vibes T-Shirt",
+    "product_price": 150.00,
+    "product_discount_price": 180.00,
+    "product_rating": 4.7,
+    "product_discount_percent": 20,
+    "product_description": "Lightweight and breathable t-shirt ideal for hot summer days. Made from premium cotton with a relaxed fit and vibrant prints.",
+    "product_size": ["small", "medium", "large", "x-large", "xx-large"],
+    "product_review": [
+        {
+            "author": "Sophia Johnson",
+            "description": "The perfect t-shirt for summer! Soft and the colors are vibrant.",
+            "posted_date": "2024-09-02"
+        },
+        {
+            "author": "James Smith",
+            "description": "Nice shirt but it shrank a bit after the first wash.",
+            "posted_date": "2024-09-04"
+        },
+        {
+            "author": "Ava Brown",
+            "description": "Love the design and fit. Very comfortable for hot days.",
+            "posted_date": "2024-09-06"
+        },
+        {
+            "author": "Ethan Davis",
+            "description": "Great shirt, though the sizing is slightly off. Ordered a size up.",
+            "posted_date": "2024-09-08"
+        },
+        {
+            "author": "Mia Wilson",
+            "description": "Soft material and cool print. Perfect for casual outings.",
+            "posted_date": "2024-09-10"
+        },
+        {
+            "author": "Lucas Martinez",
+            "description": "Good quality but delivery was delayed.",
+            "posted_date": "2024-09-12"
+        }
+    ]
+   },
+
+   {
+    "id": 11,
+    "product_images": [
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726559688/images__8_-removebg-preview_vkhssv.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726559326/images_7_nj76rm_1_-removebg-preview_zuwoyo.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726561315/download_3_s30m7p_1_-removebg-preview_se7cah.png"
+    ],
+    "product_title": "Classic Leather Jacket",
+    "product_price": 350.00,
+    "product_discount_price": 400.00,
+    "product_rating": 4.8,
+    "product_discount_percent": 12.5,
+    "product_description": "Timeless leather jacket made from genuine leather. Features a stylish design with multiple pockets and a sleek finish.",
+    "product_size": ["small", "medium", "large", "x-large"],
+    "product_review": [
+        {
+            "author": "John Doe",
+            "description": "Absolutely love this jacket. Quality leather and great fit.",
+            "posted_date": "2024-09-03"
+        },
+        {
+            "author": "Emma Brown",
+            "description": "The leather is top-notch, but the jacket is a bit stiff at first.",
+            "posted_date": "2024-09-06"
+        },
+        {
+            "author": "Michael Smith",
+            "description": "Stylish and durable. Worth every penny.",
+            "posted_date": "2024-09-08"
+        },
+        {
+            "author": "Sophia Lee",
+            "description": "Great quality but the sizing runs a bit small.",
+            "posted_date": "2024-09-10"
+        },
+        {
+            "author": "Liam Johnson",
+            "description": "Nice jacket overall, but it took longer to arrive than expected.",
+            "posted_date": "2024-09-12"
+        }
+    ]
+   },
+
+   {
+    "id": 12,
+    "product_images": [
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726561153/0a2031911e6a6172d7aa00f0d655c1d3.jpg_720x720q80-removebg-preview_um91rc.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726561153/0a2031911e6a6172d7aa00f0d655c1d3.jpg_720x720q80-removebg-preview_um91rc.png",
+        "https://res.cloudinary.com/dvp64j4a3/image/upload/v1726561661/download__6_-removebg-preview_d07ouo.png"
+    ],
+    "product_title": "Vintage Denim Jeans",
+    "product_price": 85.00,
+    "product_discount_price": 100.00,
+    "product_rating": 4.6,
+    "product_discount_percent": 15,
+    "product_description": "Classic vintage-style denim jeans with a relaxed fit and distressed detailing. Made from durable cotton with a touch of stretch.",
+    "product_size": ["28", "30", "32", "34", "36"],
+    "product_review": [
+        {
+            "author": "Mia Williams",
+            "description": "Love the vintage look and feel. Very comfortable to wear.",
+            "posted_date": "2024-09-01"
+        },
+        {
+            "author": "Lucas Johnson",
+            "description": "Great jeans, but the fit was a little snug around the thighs.",
+            "posted_date": "2024-09-03"
+        },
+        {
+            "author": "Olivia Martinez",
+            "description": "Perfect for casual wear. The quality of the denim is excellent.",
+            "posted_date": "2024-09-05"
+        },
+        {
+            "author": "Noah Lee",
+            "description": "Nice jeans but the color faded slightly after washing.",
+            "posted_date": "2024-09-07"
+        },
+        {
+            "author": "Sophia Davis",
+            "description": "Good value for the price. The distressed details are stylish.",
+            "posted_date": "2024-09-10"
+        }
+    ]
+}
 ]

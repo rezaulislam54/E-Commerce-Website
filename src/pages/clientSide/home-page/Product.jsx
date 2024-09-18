@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
   const {
+    id,
     product_images,
     product_title,
     product_rating,
@@ -21,9 +22,9 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <Link to="/product-details">
+      <Link to={`product/${id}`}>
         <div className="">
-          <div className="bg-[#F0EEED] p-5 rounded-[20px] h-[310px]">
+          <div className="bg-[#F0EEED] flex items-center justify-center p-5 rounded-[20px] h-[310px]">
             <img src={product_images[0]} alt="" />
           </div>
           <h2 className="text-xl font-bold pt-5"> {product_title} </h2>
@@ -73,7 +74,6 @@ const Product = ({ product }) => {
             </div>
             <div className="flex justify-center items-center">
               <span className=" text-center text-xl pt-2">
-                {" "}
                 {product_rating} /5
               </span>
             </div>

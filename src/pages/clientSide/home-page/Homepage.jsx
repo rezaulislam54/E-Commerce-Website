@@ -3,7 +3,6 @@ import NewArrival from "./NewArrival";
 import Sponser from "./Sponser";
 import TopSelling from "./TopSelling";
 
-
 const Homepage = () => {
   return (
     <div>

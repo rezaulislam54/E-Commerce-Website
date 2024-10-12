@@ -4,6 +4,22 @@ import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const navlinkmenu = (
+    <>
+      <li>
+        <Link to={"/"}>Home</Link>
+      </li>
+      <li>
+        <a>New Arrivals</a>
+      </li>
+      <li>
+        <a>Brand</a>
+      </li>
+      <li>
+        <Link to={"/category"}>Category</Link>
+      </li>
+    </>
+  );
   return (
     <div className="bg-base-100 shadow-lg">
       <div className="navbar justify-between  container mx-auto md:px-10 px-3 ">
@@ -39,18 +55,12 @@ const Navbar = () => {
                 </select>
               </li>
 
-              <li>
-                <a>On Sale</a>
-              </li>
-              <li>
-                <a>New Arrivals</a>
-              </li>
-              <li>
-                <a>Brands</a>
-              </li>
+              {navlinkmenu}
             </ul>
           </div>
-          <Link to="/" className=" text-3xl font-bold">SHOP.CO</Link>
+          <Link to="/" className=" text-3xl font-bold">
+            SHOP.CO
+          </Link>
         </div>
         <div className=" hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -74,16 +84,7 @@ const Navbar = () => {
               </details>
             </li>
 
-            <li>
-              <a>On Sale</a>
-            </li>
-
-            <li>
-              <a>New Arrivals</a>
-            </li>
-            <li>
-              <a>Brands</a>
-            </li>
+            {navlinkmenu}
           </ul>
         </div>
         <div className=" space-x-12 md:space-x-4">
@@ -110,7 +111,9 @@ const Navbar = () => {
             </div>
           </fieldset>
           <div className="flex text-xl gap-x-3">
-            <LuShoppingCart />
+            <Link to={"/cart"}>
+              <LuShoppingCart />
+            </Link>
             <FaRegCircleUser />
           </div>
         </div>

@@ -1,44 +1,42 @@
-import { Link } from "react-router-dom";
-// import logo from "../assets/signIn.jpg";
-// import { useContext, useRef } from "react";
-// import { AuthContext } from "../provider/AuthContexProvider";
-// import Swal from "sweetalert2";
-// import toast from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/signIn.jpg";
+import { useContext, useRef } from "react";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../authProvider/AuthContextProvider";
 
 const LoginPage = () => {
-  //   const { emailAndPasswordLogin, githubLogin, googleLogin, ResetPassword } =
-  //     useContext(AuthContext);
-  //   const emailRef = useRef();
-  //   const navigate = useNavigate();
-  //   const location = useLocation();
+  const { signInEmailPassword, googleSignIn } = useContext(AuthContext);
+  const emailRef = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  //   console.log(location.state);
-  //   const handleSignIn = (e) => {
-  //     e.preventDefault();
-  //     const email = e.target.email.value;
-  //     const password = e.target.password.value;
-  //     console.log(email, password);
+  console.log(location.state);
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
 
-  //     emailAndPasswordLogin(email, password)
-  //       .then((result) => {
-  //         navigate(location?.state ? location.state : "/");
-  //         Swal.fire({
-  //           title: "Success!",
-  //           text: "User Login Successfully!",
-  //           icon: "success",
-  //           confirmButtonText: "Ok",
-  //         });
-  //         console.log(result.user);
-  //       })
-  //       .catch((error) => {
-  //         Swal.fire({
-  //           title: "error!",
-  //           text: error.message,
-  //           icon: "error",
-  //           confirmButtonText: "Ok",
-  //         });
-  //       });
-  //   };
+    signInEmailPassword(email, password)
+      .then((result) => {
+        navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: "Success!",
+          text: "User Login Successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+        console.log(result.user);
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
 
   //   const handlePasswordReset = () => {
   //     const email = emailRef.current.value;
@@ -59,28 +57,28 @@ const LoginPage = () => {
   //       });
   //   };
 
-  //   const handleGoogleLogin = (e) => {
-  //     e.preventDefault();
-  //     googleLogin()
-  //       .then((result) => {
-  //         console.log(result.user);
-  //         navigate(location?.state ? location.state : "/");
-  //         Swal.fire({
-  //           title: "Success!",
-  //           text: "User Login Successfully!",
-  //           icon: "success",
-  //           confirmButtonText: "Ok",
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         Swal.fire({
-  //           title: "error!",
-  //           text: error.message,
-  //           icon: "error",
-  //           confirmButtonText: "Ok",
-  //         });
-  //       });
-  //   };
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+        // navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: "Success!",
+          text: "User Login Successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
 
   //   const handleGithubLogin = (e) => {
   //     e.preventDefault();
@@ -113,7 +111,7 @@ const LoginPage = () => {
           <div
             className="w-full  bg-gray-400 hidden lg:block  bg-no-repeat  lg:w-1/2  rounded-l-lg "
             style={{
-              //   background: `url(${logo})`,
+              background: `url(${logo})`,
               backgroundSize: "100% 100%",
               backgroundOrigin: "content-box",
             }}
@@ -148,7 +146,7 @@ const LoginPage = () => {
 
               <div className="flex items-center flex-wrap md:flex-nowrap gap-4 mb-4">
                 <button
-                  //   onClick={handleGoogleLogin}
+                  onClick={handleGoogleLogin}
                   className="w-full max-w-md font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                 >
                   <div className="bg-white p-2 rounded-full">
@@ -196,10 +194,7 @@ const LoginPage = () => {
                 </div>
               </div>
 
-              <form
-                //   onSubmit={handleSignIn}
-                className="space-y-3 w-full "
-              >
+              <form onSubmit={handleSignIn} className="space-y-3 w-full ">
                 <div>
                   <fieldset className="border border-solid border-gray-300 p-3 w-full rounded">
                     <legend className=" font-medium text-black/60">
@@ -208,7 +203,7 @@ const LoginPage = () => {
                     <input
                       type="email"
                       name="email"
-                      //   ref={emailRef}
+                      ref={emailRef}
                       id=""
                       placeholder="Email"
                       className="px-4 py-1 w-full focus:outline-0"

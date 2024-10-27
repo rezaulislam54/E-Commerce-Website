@@ -1,9 +1,34 @@
-import { FaRegCircleUser } from "react-icons/fa6";
+import { useContext } from "react";
+// import { FaRegCircleUser } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../authProvider/AuthContextProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, LognOut } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    LognOut()
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: "User LogOut Successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
+
   const navlinkmenu = (
     <>
       <li>
@@ -110,11 +135,24 @@ const Navbar = () => {
               />
             </div>
           </fieldset>
-          <div className="flex text-xl gap-x-3">
+          <div className="flex text-xl gap-x-3 items-center">
             <Link to={"/cart"}>
               <LuShoppingCart />
             </Link>
-            <FaRegCircleUser />
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="bg-[#FF497C] text-white font-semibold rounded-sm  px-4"
+              >
+                LogOut
+              </button>
+            ) : (
+              <Link to={"/login"}>
+                <button className="bg-[#FF497C] text-white font-semibold rounded-sm  px-4">
+                  Login
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

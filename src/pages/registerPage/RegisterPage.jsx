@@ -1,79 +1,79 @@
-import { Link } from "react-router-dom";
-// import logo from "../assets/signUp.jpg";
-// import { useContext } from "react";
-// import { AuthContext } from "../provider/AuthContexProvider";
-// import Swal from "sweetalert2";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "../../assets/signUp.jpg";
+import { useContext } from "react";
+import { AuthContext } from "../../authProvider/AuthContextProvider";
+import Swal from "sweetalert2";
 
 const RegisterPage = () => {
-  //   const { createUser, setLoading, googleLogin, updateUserProfile } =
-  //     useContext(AuthContext);
-  //   const navigate = useNavigate();
-  //   const location = useLocation();
+  const { signUpEmailAndPassword, setLoading, UpdateUser, googleSignIn } =
+    useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  //   const handleSignUp = (e) => {
-  //     e.preventDefault();
-  //     const name = e.target.name.value;
-  //     const email = e.target.email.value;
-  //     const password = e.target.password.value;
-  //     const image = e.target.image.value;
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const image = e.target.image.value;
 
-  //     console.log(name, image);
+    console.log(name, image);
 
-  //     createUser(email, password)
-  //       .then((result) => {
-  //         console.log(result.user);
-  //         updateUserProfile({ displayName: name, photoURL: image })
-  //           .then(() => {
-  //             setLoading(false);
-  //             navigate(location?.state ? location.state : "/");
-  //             Swal.fire({
-  //               title: "Success!",
-  //               text: "Acount Created Successfully!",
-  //               icon: "success",
-  //               confirmButtonText: "Ok",
-  //             });
-  //           })
-  //           .catch((err) => {
-  //             setLoading(false);
-  //             Swal.fire({
-  //               title: "error!",
-  //               text: err.message,
-  //               icon: "error",
-  //               confirmButtonText: "Ok",
-  //             });
-  //           });
-  //       })
-  //       .catch((error) => {
-  //         Swal.fire({
-  //           title: "error!",
-  //           text: error.message,
-  //           icon: "error",
-  //           confirmButtonText: "Ok",
-  //         });
-  //       });
-  //   };
+    signUpEmailAndPassword(email, password)
+      .then((result) => {
+        console.log(result.user);
+        UpdateUser({ displayName: name, photoURL: image })
+          .then(() => {
+            setLoading(false);
+            navigate(location?.state ? location.state : "/");
+            Swal.fire({
+              title: "Success!",
+              text: "Acount Created Successfully!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
+          })
+          .catch((err) => {
+            setLoading(false);
+            Swal.fire({
+              title: "error!",
+              text: err.message,
+              icon: "error",
+              confirmButtonText: "Ok",
+            });
+          });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
 
-  //   const handleGoogleLogin = (e) => {
-  //     e.preventDefault();
-  //     googleLogin()
-  //       .then((result) => {
-  //         console.log(result.user);
-  //         Swal.fire({
-  //           title: "Success!",
-  //           text: "User Login Successfully!",
-  //           icon: "success",
-  //           confirmButtonText: "Ok",
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         Swal.fire({
-  //           title: "error!",
-  //           text: error.message,
-  //           icon: "error",
-  //           confirmButtonText: "Ok",
-  //         });
-  //       });
-  //   };
+  const handleGoogleLogin = (e) => {
+    e.preventDefault();
+    googleSignIn()
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "Success!",
+          text: "User Login Successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "error!",
+          text: error.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
 
   return (
     <div>
@@ -85,7 +85,7 @@ const RegisterPage = () => {
             <div
               className="w-full  bg-gray-400 hidden lg:block  bg-no-repeat  lg:w-1/2  rounded-l-lg "
               style={{
-                // background: `url(${logo})`,
+                background: `url(${logo})`,
                 backgroundSize: "100% 100%",
                 backgroundOrigin: "content-box",
               }}
@@ -127,7 +127,7 @@ const RegisterPage = () => {
 
                 <div className="flex items-center flex-wrap md:flex-nowrap gap-4 mb-4">
                   <button
-                    // onClick={handleGoogleLogin}
+                    onClick={handleGoogleLogin}
                     className="w-full max-w-md font-bold shadow-sm rounded-lg py-2 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                   >
                     <div className="bg-white p-2 rounded-full">
@@ -175,10 +175,7 @@ const RegisterPage = () => {
                   </div>
                 </div>
 
-                <form
-                  // onSubmit={handleSignUp}
-                  className="space-y-3 w-full "
-                >
+                <form onSubmit={handleSignUp} className="space-y-3 w-full ">
                   <div>
                     <fieldset className="border border-solid border-gray-300 p-2 w-full rounded">
                       <legend className=" font-medium text-black/60">

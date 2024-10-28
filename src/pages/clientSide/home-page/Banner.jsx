@@ -67,7 +67,12 @@ const Banner = () => {
           </div>
         </div>
 
-        <div className="relative ">
+        <div
+          className="relative "
+          data-aos="fade-right"
+          data-aos-offset="300"
+          data-aos-easing="ease-in-sine"
+        >
           <img
             className="md:pt-8 "
             src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726063596/Rectangle_2__1_-removebg-preview_u96hfh.png"

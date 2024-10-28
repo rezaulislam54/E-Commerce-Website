@@ -1,3 +1,5 @@
+import CountUp from "react-countup";
+
 const Banner = () => {
   return (
     <div className="bg-[#F2F0F1]">
@@ -21,20 +23,46 @@ const Banner = () => {
 
           <div className="flex flex-wrap md:flex-nowrap justify-start gap-x-16 md:gap-x-10 pt-5 md:pt-10">
             <div>
-              <h2 className="text-2xl font-bold">200+</h2>
-              <p className="text-xl">International Brands</p>
+              <CountUp start={0} end={200} duration={5} delay={0}>
+                {({ countUpRef }) => (
+                  <div>
+                    <h2 className="text-2xl font-bold" ref={countUpRef}></h2>
+                    <p className="text-xl">International Brands</p>
+                  </div>
+                )}
+              </CountUp>
             </div>
             <div>
-              <h2 className="text-2xl font-bold">2,000+</h2>
-              <p className="text-xl">High-Quality Products</p>
+              <CountUp start={0} end={2000} duration={5} delay={0}>
+                {({ countUpRef }) => (
+                  <div>
+                    <h2 className="text-2xl font-bold" ref={countUpRef}>
+                      +
+                    </h2>
+                    <p className="text-xl">High-Quality Products</p>
+                  </div>
+                )}
+              </CountUp>
             </div>
             <div className="hidden">
-              <h2 className="text-2xl font-bold">30,000+</h2>
-              <p className="text-xl"> Happy Customers</p>
+              <CountUp start={0} end={30000} duration={5} delay={0}>
+                {({ countUpRef }) => (
+                  <div>
+                    <h2 className="text-2xl font-bold" ref={countUpRef}></h2>
+                    <p className="text-xl"> Happy Customers</p>
+                  </div>
+                )}
+              </CountUp>
             </div>
             <div className="pt-5 md:pt-0 md:block">
-              <h2 className="text-2xl font-bold">30,000+</h2>
-              <p className="text-xl"> Happy Customers</p>
+              <CountUp start={0} end={30000} duration={5} delay={0}>
+                {({ countUpRef }) => (
+                  <div>
+                    <h2 className="text-2xl font-bold" ref={countUpRef}></h2>
+                    <p className="text-xl"> Happy Customers</p>
+                  </div>
+                )}
+              </CountUp>
             </div>
           </div>
         </div>

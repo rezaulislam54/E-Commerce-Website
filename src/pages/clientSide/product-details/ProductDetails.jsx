@@ -1,15 +1,20 @@
 import { Helmet } from "react-helmet-async";
-import { FaCircleCheck } from "react-icons/fa6";
+// import { FaCircleCheck } from "react-icons/fa6";
 import { useLoaderData, useParams } from "react-router-dom";
 import ProductReview from "./ProductReview";
 import Product from "../home-page/product";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// import { IoIosCheckmark } from "react-icons/io";
+import { AiOutlineCheck } from "react-icons/ai";
+import { FaCheck } from "react-icons/fa";
 
 const ProductDetails = () => {
-  window.scrollTo(0, 0);
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, [])
   const products = useLoaderData();
   const { id } = useParams();
-  const product = products.find((pro) => pro.id === +id);
+  const product = products?.find((pro) => pro.id === +id);
   const [Productimg, setproductimg] = useState(product.product_images[0]);
   const [index, setindex] = useState(0);
   const [color, setcolor] = useState(0);
@@ -103,8 +108,38 @@ const ProductDetails = () => {
           <div className=" border-y p-3 my-4 pl-0">
             <p className="mb-3">Select Colors</p>
             <div className="flex gap-2">
-              <p className="bg-[#314F4A] rounded-full h-7 w-7"></p>
-              <p className="bg-[#314F4A] rounded-full h-7 w-7"></p>
+              <p
+                onClick={() => setcolor(0)}
+                className="flex items-center justify-center bg-[#FF0000] rounded-full h-7 w-7"
+              >
+                <FaCheck
+                  className={`${color === 0 ? "text-white" : "text-[#FF0000]"}`}
+                />
+              </p>
+              <p
+                onClick={() => setcolor(1)}
+                className="flex items-center justify-center bg-[#6046f2] rounded-full h-7 w-7"
+              >
+                <FaCheck
+                  className={`${color === 1 ? "text-white" : "text-[#6046f2]"}`}
+                />
+              </p>
+              <p
+                onClick={() => setcolor(2)}
+                className="flex items-center justify-center bg-[#314F4A] rounded-full h-7 w-7"
+              >
+                <FaCheck
+                  className={`${color === 2 ? "text-white" : "text-[#314F4A]"}`}
+                />
+              </p>
+              <p
+                onClick={() => setcolor(3)}
+                className="flex items-center justify-center bg-[#000000] rounded-full h-7 w-7"
+              >
+                <FaCheck
+                  className={`${color === 3 ? "text-white" : "text-[#000000]"}`}
+                />
+              </p>
             </div>
           </div>
 

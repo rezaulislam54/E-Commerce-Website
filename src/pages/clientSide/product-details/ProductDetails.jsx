@@ -3,12 +3,14 @@ import { FaCircleCheck } from "react-icons/fa6";
 import { useLoaderData, useParams } from "react-router-dom";
 import ProductReview from "./ProductReview";
 import Product from "../home-page/product";
+import { useState } from "react";
 
 const ProductDetails = () => {
   window.scrollTo(0, 0);
   const products = useLoaderData();
   const { id } = useParams();
   const product = products.find((pro) => pro.id === +id);
+  const [Productimg, setproductimg] = useState(product.product_images[0]);
 
   const {
     product_title,
@@ -28,14 +30,26 @@ const ProductDetails = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-9 gap-5  ">
         <div className="space-y-4 *:w-full *:h-[142px] ">
-          <img className="bg-[#F0EEED] rounded-xl" src={product_images[0]} />
-          <img className="bg-[#F0EEED] rounded-xl" src={product_images[1]} />
-          <img className="bg-[#F0EEED] rounded-xl" src={product_images[2]} />
+          <img
+            onClick={() => setproductimg(product_images[0])}
+            className="bg-[#F0EEED] rounded-xl cursor-pointer"
+            src={product_images[0]}
+          />
+          <img
+            onClick={() => setproductimg(product_images[1])}
+            className="bg-[#F0EEED] rounded-xl cursor-pointer"
+            src={product_images[1]}
+          />
+          <img
+            onClick={() => setproductimg(product_images[2])}
+            className="bg-[#F0EEED] rounded-xl cursor-pointer"
+            src={product_images[2]}
+          />
           {/* <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726511359/Frame_33_yevjec.png" /> */}
         </div>
 
-        <div className="col-span-3 bg-[#F0EEED] rounded-xl flex items-center justify-center">
-          <img src={product_images[0]} />
+        <div className="col-span-3 size-96 bg-[#F0EEED] rounded-xl flex items-center justify-center">
+          <img src={Productimg} />
         </div>
 
         <div className="col-span-5 ml-4">
@@ -160,7 +174,7 @@ const ProductDetails = () => {
         {/* review section */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {product_review.map((review, index) => (
+          {product_review?.map((review, index) => (
             <ProductReview key={index} review={review}></ProductReview>
           ))}
         </div>
@@ -177,7 +191,7 @@ const ProductDetails = () => {
       <div className="my-16">
         <h2 className="text-center text-5xl font-bold">YOU MIGHT ALSO LIKE</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10 px-5 lg:px-0">
-          {products.slice(5, 9).map((product) => (
+          {products?.slice(5, 9)?.map((product) => (
             <Product key={product.id} product={product}></Product>
           ))}
         </div>

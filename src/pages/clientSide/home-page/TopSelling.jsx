@@ -8,7 +8,7 @@ const TopSelling = () => {
       <h2 className="text-center text-5xl font-bold">TOP SELLING</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10 px-5 lg:px-0">
-        {products.slice(8, 12)?.map((product) => (
+        {products?.slice(8, 12).map((product) => (
           <Product key={product.id} product={product}></Product>
         ))}
       </div>

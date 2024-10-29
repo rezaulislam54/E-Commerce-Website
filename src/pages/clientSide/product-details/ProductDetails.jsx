@@ -11,6 +11,8 @@ const ProductDetails = () => {
   const { id } = useParams();
   const product = products.find((pro) => pro.id === +id);
   const [Productimg, setproductimg] = useState(product.product_images[0]);
+  const [index, setindex] = useState(0);
+  const [color, setcolor] = useState(0);
 
   const {
     product_title,
@@ -101,7 +103,6 @@ const ProductDetails = () => {
           <div className=" border-y p-3 my-4 pl-0">
             <p className="mb-3">Select Colors</p>
             <div className="flex gap-2">
-              <FaCircleCheck className="text-[27px]" />
               <p className="bg-[#314F4A] rounded-full h-7 w-7"></p>
               <p className="bg-[#314F4A] rounded-full h-7 w-7"></p>
             </div>
@@ -109,16 +110,36 @@ const ProductDetails = () => {
 
           <div className="*:mr-3 border-b  px-3 pb-4 my-2 pl-0">
             <h1 className="mb-3">Choose Size</h1>
-            <span className="bg-[#FF33331A] rounded-full px-3 py-1 text-[16px]">
+            <span
+              onClick={() => setindex(0)}
+              className={`${
+                index === 0 ? "bg-[#000000] text-white" : "bg-[#FF33331A]"
+              } rounded-full px-3 py-1 text-[16px] cursor-pointer`}
+            >
               Small
             </span>
-            <span className="bg-[#FF33331A] rounded-full px-3 py-1 text-[16px]">
+            <span
+              onClick={() => setindex(1)}
+              className={`${
+                index === 1 ? "bg-[#000000] text-white" : "bg-[#FF33331A]"
+              } rounded-full px-3 py-1 text-[16px] cursor-pointer`}
+            >
               Medium
             </span>
-            <span className="bg-[#000000] text-white rounded-full px-3 py-1 text-[16px]">
+            <span
+              onClick={() => setindex(2)}
+              className={`${
+                index === 2 ? "bg-[#000000] text-white" : "bg-[#FF33331A]"
+              } rounded-full px-3 py-1 text-[16px] cursor-pointer`}
+            >
               Large
             </span>
-            <span className="bg-[#FF33331A] rounded-full px-3 py-1 text-[16px]">
+            <span
+              onClick={() => setindex(3)}
+              className={`${
+                index === 3 ? "bg-[#000000] text-white" : "bg-[#FF33331A]"
+              } rounded-full px-3 py-1 text-[16px] cursor-pointer`}
+            >
               X-Large
             </span>
           </div>

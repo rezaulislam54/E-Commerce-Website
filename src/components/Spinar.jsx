@@ -2,7 +2,7 @@ import { Bars } from "react-loader-spinner";
 
 const Spinar = () => {
   return (
-    <div className="flex items-center justify-center">
+    <div className=" flex items-center h-screen justify-center">
       <Bars
         height="80"
         width="80"

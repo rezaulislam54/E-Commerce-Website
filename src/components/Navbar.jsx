@@ -5,6 +5,7 @@ import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthContextProvider";
 import Swal from "sweetalert2";
+import { FaRegCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, LognOut } = useContext(AuthContext);
@@ -47,7 +48,7 @@ const Navbar = () => {
   );
   return (
     <div className="bg-base-100 shadow-lg">
-      <div className="navbar justify-between  container mx-auto md:px-10 px-3 ">
+      <div className="navbar justify-between  container mx-auto md:px-10 px-3 py-5">
         <div className="">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -83,7 +84,11 @@ const Navbar = () => {
               {navlinkmenu}
             </ul>
           </div>
-          <Link to="/" className=" text-3xl font-bold">
+          <Link
+            to="/"
+            style={{ fontFamily: "IntegralCF, sans-serif" }}
+            className=" text-3xl font-extrabold"
+          >
             SHOP.CO
           </Link>
         </div>
@@ -140,15 +145,23 @@ const Navbar = () => {
               <LuShoppingCart />
             </Link>
             {user ? (
-              <button
-                onClick={handleLogout}
-                className="bg-[#FF497C] text-white font-semibold rounded-sm  px-4"
-              >
-                LogOut
-              </button>
+              <div className="flex justify-center items-center gap-4">
+                <div
+                  className="tooltip tooltip-bottom"
+                  data-tip={`${user.email}`}
+                >
+                  <FaRegCircleUser />
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className=" px-2 rounded-md bg-black text-white"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <Link to={"/login"}>
-                <button className="bg-[#FF497C] text-white font-semibold rounded-sm  px-4">
+                <button className=" px-4 rounded-md bg-black text-white">
                   Login
                 </button>
               </Link>

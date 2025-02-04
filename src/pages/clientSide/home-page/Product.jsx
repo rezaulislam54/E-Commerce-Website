@@ -25,7 +25,11 @@ const Product = ({ product }) => {
       <Link to={`product/${id}`}>
         <div className="">
           <div className="bg-[#F0EEED] flex items-center justify-center p-5 rounded-[20px] h-[310px]">
-            <img src={product_images[0]} alt="" />
+            <img
+              className="hover:scale-110 transition-all duration-500"
+              src={product_images[0]}
+              alt=""
+            />
           </div>
           <h2 className="text-xl font-bold pt-5"> {product_title} </h2>
 

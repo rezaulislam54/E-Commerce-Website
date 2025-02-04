@@ -58,6 +58,7 @@ const RegisterPage = () => {
     googleSignIn()
       .then((result) => {
         console.log(result.user);
+        navigate(location?.state ? location.state : "/");
         Swal.fire({
           title: "Success!",
           text: "User Login Successfully!",

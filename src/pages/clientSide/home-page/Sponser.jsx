@@ -2,7 +2,7 @@ const Sponser = () => {
   return (
     <div className="bg-[#000000]">
       <div className="container mx-auto px-3 md:px-10">
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-x-4 md:gap-x-20 py-5">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-x-4 md:gap-x-20 py-10">
           <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726066105/Vector_2_yohmr0.png" />
           <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726066086/Vector_3_rbh7dt.png" />
           <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726066105/Vector_2_yohmr0.png" />

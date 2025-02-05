@@ -98,18 +98,38 @@ const Navbar = () => {
             <li>
               <details className="z-30">
                 <summary>Shope</summary>
-                <ul>
+                <ul className="grid grid-cols-2 gap-2 w-[600px] border rounded-md p-3">
                   <li>
-                    <a>t-Shirt</a>
+                    <div className=" inline-table font-semibold">
+                      Men&apos;s clothes <br />
+                      <span className="font-normal">
+                        In attractive and spectacular colors and designs
+                      </span>
+                    </div>
                   </li>
                   <li>
-                    <a>Shirts</a>
+                    <div className=" inline-table font-semibold">
+                      Womenapos;s clothes <br />
+                      <span className="font-normal">
+                        Ladies, your style and tastes are important to us
+                      </span>
+                    </div>
                   </li>
                   <li>
-                    <a>Hoodie</a>
+                    <div className=" inline-table font-semibold">
+                      Kids clothes <br />
+                      <span className="font-normal">
+                        For all ages, with happy and beautiful colors
+                      </span>
+                    </div>
                   </li>
                   <li>
-                    <a>Jeans</a>
+                    <div className=" inline-table font-semibold">
+                      Bags and Shoes <br />
+                      <span className="font-normal">
+                        Suitable for men, women and all tastes and styles
+                      </span>
+                    </div>
                   </li>
                 </ul>
               </details>

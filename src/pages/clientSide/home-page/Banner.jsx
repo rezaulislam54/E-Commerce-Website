@@ -1,4 +1,5 @@
 import * as motion from "framer-motion/client";
+import CountUp from "react-countup";
 import { Link } from "react-router-dom";
 // import AnimatedCounter from "/components/ui/AnimatedCounter";
 
@@ -52,8 +53,17 @@ const Banner = () => {
             className="flex md:h-full md:max-h-11 lg:max-h-[52px] xl:max-h-[68px] items-center justify-center md:justify-start flex-wrap sm:flex-nowrap md:space-x-3 lg:space-x-6 xl:space-x-8 md:mb-[116px]"
           >
             <div className="flex flex-col">
-              <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
-                200+
+              <span className="inline-block">
+                <CountUp
+                  start={0}
+                  end={200}
+                  duration={6}
+                  delay={1}
+                  className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2"
+                ></CountUp>
+                <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
+                  +
+                </span>
               </span>
               <span className="text-xs xl:text-base text-black/60 text-nowrap">
                 International Brands
@@ -64,8 +74,17 @@ const Banner = () => {
               orientation="vertical"
             ></div>
             <div className="flex flex-col ml-6 md:ml-0">
-              <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
-                2000+
+              <span className="inline-block">
+                <CountUp
+                  start={0}
+                  end={2000}
+                  duration={6}
+                  delay={1}
+                  className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2"
+                ></CountUp>
+                <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
+                  +
+                </span>
               </span>
               <span className="text-xs xl:text-base text-black/60 text-nowrap">
                 High-Quality Products
@@ -76,8 +95,17 @@ const Banner = () => {
               orientation="vertical"
             ></div>
             <div className="flex flex-col w-full text-center sm:w-auto sm:text-left mt-3 sm:mt-0 sm:ml-6 md:ml-0">
-              <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
-                3000+
+              <span className="inline-block">
+                <CountUp
+                  start={0}
+                  end={3000}
+                  duration={6}
+                  delay={1}
+                  className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2"
+                ></CountUp>
+                <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
+                  +
+                </span>
               </span>
               <span className="text-xs xl:text-base text-black/60 text-nowrap">
                 Happy Customers

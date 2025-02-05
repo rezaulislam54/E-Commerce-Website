@@ -9,6 +9,7 @@ import { FaRegCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, LognOut } = useContext(AuthContext);
+  // const [show, setshow] = useState(false);
 
   const handleLogout = () => {
     LognOut()

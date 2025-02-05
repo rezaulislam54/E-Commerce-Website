@@ -1,17 +1,33 @@
 import { useLoaderData } from "react-router-dom";
 import Product from "./product";
+import * as motion from "framer-motion/client";
 
 const TopSelling = () => {
   const products = useLoaderData();
   return (
     <div className="container mx-auto my-20">
-      <h2 className="text-center text-5xl font-bold">TOP SELLING</h2>
+      <motion.h2
+        initial={{ y: "100px", opacity: 0 }}
+        whileInView={{ y: "0", opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        style={{ fontFamily: "IntegralCF, sans-serif" }}
+        className="text-center font-extrabold text-[32px] leading-[36px] md:text-5xl mb-6 md:mb-10 capitalize"
+      >
+        TOP SELLING
+      </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10 px-5 lg:px-0">
+      <motion.div
+        initial={{ y: "100px", opacity: 0 }}
+        whileInView={{ y: "0", opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10 px-5 lg:px-0"
+      >
         {products?.slice(8, 12).map((product) => (
           <Product key={product.id} product={product}></Product>
         ))}
-      </div>
+      </motion.div>
 
       {/* btn */}
       <div className="text-center py-3">

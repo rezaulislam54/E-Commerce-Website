@@ -10,20 +10,32 @@ import "swiper/css/pagination";
 import "../../../App.css";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper/modules";
+import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import * as motion from "framer-motion/client";
 
 const CoustomarReview = () => {
   return (
     <div className="container mx-auto">
       <div className=" pt-5">
-        <h2 className="lg:text-4xl text-center my-10 text-2xl font-bold ml-5">
-          OUR HAPPY CUSTOMERS
-        </h2>
+        <motion.h2
+          initial={{ y: "100px", opacity: 0 }}
+          whileInView={{ y: "0", opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ fontFamily: "IntegralCF, sans-serif" }}
+          className="text-center font-extrabold text-[32px] leading-[36px] md:text-5xl mb-6 md:mb-10 capitalize"
+        >
+          BROWSE BY DRESS STYLE
+        </motion.h2>
       </div>
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
         centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         slidesPerView={"auto"}
         coverflowEffect={{
           rotate: 50,
@@ -33,7 +45,7 @@ const CoustomarReview = () => {
           slideShadows: true,
         }}
         pagination={true}
-        modules={[EffectCoverflow, Pagination]}
+        modules={[Autoplay, Pagination]}
         className="mySwiper "
       >
         <SwiperSlide>

@@ -1,17 +1,20 @@
 import { RiDeleteBinFill } from "react-icons/ri";
 
-const SingleCart = ({ product}) => {
-    const { product_title, product_price, product_images, product_size } =
-      product;
+const SingleCart = ({ product, handleProductDelete }) => {
+  const { _id, product_title, product_price, product_images, product_size } =
+    product;
   return (
     <div className="flex justify-between items-center w-full gap-5 border p-3 rounded-xl">
       <div className="w-36 bg-[#FF33331A] rounded-lg">
-        <img src={product_images[0]} />
+        <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726511359/Frame_33_yevjec.png" />
       </div>
       <div className="flex-grow w-full">
         <div className="flex justify-between text-[20px] font-bold">
           <h2>{product_title}</h2>
-          <RiDeleteBinFill />
+          <RiDeleteBinFill
+            onClick={() => handleProductDelete(_id)}
+            className="cursor-pointer"
+          />
         </div>
         <p>
           <span className="font-medium">Size:</span> {product_size[2]}

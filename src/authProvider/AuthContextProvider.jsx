@@ -15,6 +15,7 @@ export const AuthContext = createContext(null);
 
 const AuthContextProvider = ({ children }) => {
   const [user, setuser] = useState();
+  const [isCartUpdated, setIsCartUpdated] = useState(false);
   const [loading, setLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
   const [products, setproducts] = useState([]);
@@ -80,6 +81,7 @@ const AuthContextProvider = ({ children }) => {
     LognOut,
     googleSignIn,
     signUpEmailAndPassword,
+    cartUpdate: [isCartUpdated, setIsCartUpdated],
     signInEmailPassword,
     updateUserProfile,
     ResetPassword,

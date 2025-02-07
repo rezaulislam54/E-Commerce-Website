@@ -23,7 +23,7 @@ const ProductDetails = () => {
   const email = user?.email;
 
   const {
-    id,
+    _id,
     product_title,
     product_price,
     product_images,
@@ -34,27 +34,15 @@ const ProductDetails = () => {
     product_size,
   } = product;
 
-  const handleAddToCard = (
-    email,
-    id,
-    product_title,
-    product_price,
-    product_images,
-    product_discount_price,
-    product_rating,
-    product_review,
-    product_size
-  ) => {
+  const handleAddToCard = () => {
     const info = {
-      email,
-      id,
-      product_title,
-      product_price,
-      product_images,
-      product_rating,
-      product_discount_price,
-      product_review,
-      product_size,
+      productName: product_title,
+      price: product_price,
+      quantity: 1,
+      product_size: product_size,
+      photo: product_images[0],
+      email: email,
+      prodId: _id,
     };
     console.log(info);
 
@@ -238,20 +226,7 @@ const ProductDetails = () => {
               - <span className="mx-7">1</span>+
             </span>
             <button
-              onClick={() =>
-                handleAddToCard(
-                  email,
-                  id,
-                  product_title,
-                  product_price,
-                  product_images,
-                  product_discount_price,
-                  product_rating,
-                  product_discount_percent,
-                  product_review,
-                  product_size
-                )
-              }
+              onClick={handleAddToCard}
               className="bg-[#000000] text-white rounded-full px-32 py-1 text-[16px]"
             >
               Add to Cart

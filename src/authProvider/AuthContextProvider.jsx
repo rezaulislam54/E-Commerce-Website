@@ -17,6 +17,13 @@ const AuthContextProvider = ({ children }) => {
   const [user, setuser] = useState();
   const [loading, setLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
+  const [products, setproducts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/products")
+      .then((response) => response.json())
+      .then((data) => setproducts(data));
+  }, []);
 
   const signUpEmailAndPassword = (email, password) => {
     setLoading(true);
@@ -67,6 +74,7 @@ const AuthContextProvider = ({ children }) => {
     user,
     setuser,
     UpdateUser,
+    products,
     loading,
     setLoading,
     LognOut,

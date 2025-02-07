@@ -1,9 +1,10 @@
-import { useLoaderData } from "react-router-dom";
 import Product from "./product";
 import * as motion from "framer-motion/client";
+import { useContext } from "react";
+import { AuthContext } from "../../../authProvider/AuthContextProvider";
 
 const TopSelling = () => {
-  const products = useLoaderData();
+  const { products } = useContext(AuthContext);
   return (
     <div className="container mx-auto my-20">
       <motion.h2

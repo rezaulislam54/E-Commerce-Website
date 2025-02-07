@@ -1,23 +1,26 @@
 import { Helmet } from "react-helmet-async";
 // import { FaCircleCheck } from "react-icons/fa6";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import ProductReview from "./ProductReview";
 import Product from "../home-page/product";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // import { IoIosCheckmark } from "react-icons/io";
-import { AiOutlineCheck } from "react-icons/ai";
+// import { AiOutlineCheck } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
+import { AuthContext } from "../../../authProvider/AuthContextProvider";
 
 const ProductDetails = () => {
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
-  const products = useLoaderData();
-  const { id } = useParams();
-  const product = products?.find((pro) => pro.id === +id);
+  }, []);
+  const product = useLoaderData();
+  // const { id } = useParams();
+  // const product = products?.find((pro) => pro.id === +id);
   const [Productimg, setproductimg] = useState(product.product_images[0]);
   const [index, setindex] = useState(0);
   const [color, setcolor] = useState(0);
+
+  const { products } = useContext(AuthContext);
 
   const {
     product_title,

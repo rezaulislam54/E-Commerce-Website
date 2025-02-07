@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import { AiTwotoneControl } from "react-icons/ai";
 import { FaAngleRight, FaAngleUp } from "react-icons/fa6";
-import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthContextProvider";
+import Product from "../clientSide/home-page/product";
 
 const CategoryPage = () => {
-  const data = useLoaderData();
+  const { products } = useContext(AuthContext);
   // const [products , setProducts] = useState([])
   // setProducts(data)
 
@@ -235,53 +237,8 @@ const CategoryPage = () => {
           </div>
           <hr className="my-3" />
           <div className="grid md:grid-cols-2  lg:grid-cols-3 gap-5">
-            {data.map((product) => (
-              <div key={product.id}>
-                <div className="bg-[#F0EEED] rounded-xl p-8 lg:p-0">
-                  <img
-                    src={product.product_images}
-                    className="rounded-xl mx-auto h-[300px]"
-                    alt=""
-                  />
-                </div>
-                <h2 className="text-xl font-bold mt-2">
-                  {product.product_title}
-                </h2>
-                <div className="rating rating-md">
-                  <input
-                    type="radio"
-                    name="rating-6"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-6"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-6"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <input
-                    type="radio"
-                    name="rating-6"
-                    className="mask mask-star-2 bg-orange-400"
-                  />
-                  <p className="text-xl">{product.product_rating}/5</p>
-                </div>
-                <div className="flex gap-5 items-center">
-                  <h2 className="text-xl font-bold">
-                    ${product.product_price}
-                  </h2>
-                  <h2 className="text-xl font-bold opacity-70 line-through">
-                    ${product.product_discount_price}
-                  </h2>
-                  <button className=" py-2.5 px-4 bg-[#FFEBEB] text-red-500 mt-3 rounded-[40px] ">
-                    -{product.product_discount_percent}%
-                  </button>
-                </div>
-              </div>
+            {products?.map((product) => (
+              <Product key={product.id} product={product}></Product>
             ))}
           </div>
         </div>

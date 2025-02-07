@@ -1,10 +1,12 @@
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { useNavigation } from "react-router-dom";
 import Product from "./product";
 import Spinar from "../../../components/Spinar";
 import * as motion from "framer-motion/client";
+import { useContext } from "react";
+import { AuthContext } from "../../../authProvider/AuthContextProvider";
 
 const NewArrival = () => {
-  const products = useLoaderData();
+  const { products } = useContext(AuthContext);
   const navigation = useNavigation();
 
   if (navigation.state === "loading") return <Spinar />;

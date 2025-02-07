@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  const navigate = useNavigate();
   const {
-    id,
+    _id,
     product_images,
     product_title,
     product_rating,
@@ -23,7 +22,7 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <Link to={`product/${id}`}>
+      <Link to={`product/${_id}`}>
         <div className="">
           <div className="bg-[#F0EEED] flex items-center justify-center p-5 rounded-[20px] h-[310px]">
             <img

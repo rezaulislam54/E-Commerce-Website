@@ -17,22 +17,21 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Homepage></Homepage>,
-        loader: () => fetch("product.json"),
       },
       {
         path: "/product/:id",
         element: <ProductDetails></ProductDetails>,
-        loader: () => fetch("product.json"),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
         path: "/category",
         element: <CategoryPage></CategoryPage>,
-        loader: () => fetch("category.json"),
+        loader: () => fetch("http://localhost:5000/products"),
       },
       {
         path: "/new",
         element: <NewArrival></NewArrival>,
-        loader: () => fetch("category.json"),
       },
       {
         path: "/cart",

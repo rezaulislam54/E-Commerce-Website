@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 // import { FaRegCircleUser } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { LuShoppingCart } from "react-icons/lu";
@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthContextProvider";
 import Swal from "sweetalert2";
 import { FaRegCircleUser } from "react-icons/fa6";
+import { VscDashboard, VscSignOut } from "react-icons/vsc";
 
 const Navbar = () => {
   const { user, LognOut } = useContext(AuthContext);
   // const [show, setshow] = useState(false);
+  const [close, setclose] = useState(false);
 
   const handleLogout = () => {
     LognOut()
@@ -37,10 +39,10 @@ const Navbar = () => {
         <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <a>New Arrivals</a>
+        <Link to={"/new"}>New Arrivals</Link>
       </li>
       <li>
-        <a>Brand</a>
+        <Link to={"/category"}>Brand</Link>
       </li>
       <li>
         <Link to={"/category"}>Category</Link>
@@ -162,23 +164,64 @@ const Navbar = () => {
             </div>
           </fieldset>
           <div className="flex text-xl gap-x-3 items-center">
-            <Link to={"/cart"}>
-              <LuShoppingCart />
-            </Link>
             {user ? (
               <div className="flex justify-center items-center gap-4">
+                <Link to={"/cart"}>
+                  <LuShoppingCart />
+                </Link>
                 <div
                   className="tooltip tooltip-bottom"
                   data-tip={`${user.email}`}
                 >
                   <FaRegCircleUser />
                 </div>
-                <button
-                  onClick={handleLogout}
-                  className=" px-2 rounded-md bg-black text-white"
-                >
-                  Logout
-                </button>
+                <div className=" dropdown dropdown-end">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    onClick={() => setclose(!close)}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-8 rounded-full">
+                      {!user.photoURL ? (
+                        <img alt="" src={user?.photoURL} />
+                      ) : (
+                        <img
+                          alt="Tailwind CSS Navbar component"
+                          src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                        />
+                      )}
+                    </div>
+                  </div>
+                  {close && (
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content  z-[1000] divide-y-[1px] divide-[#2c333f] overflow-hidden rounded-md border-[1px] border-[#2c333f] bg-[#161d29]  md:-mr-11 w-36 p-2 shadow"
+                    >
+                      <li>
+                        <div
+                          onClick={() => setclose(false)}
+                          className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-[#afb2bf] hover:bg-[#2c333f] hover:text-[#dbddea]"
+                        >
+                          <VscDashboard className="text-lg" />
+                          Dashboard
+                        </div>
+                      </li>
+                      {/* <li>
+                        <a>Settings</a>
+                      </li> */}
+                      <li>
+                        <div
+                          onClick={(() => setclose(false), handleLogout)}
+                          className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-[#afb2bf] hover:bg-[#2c333f] hover:text-[#dbddea]"
+                        >
+                          <VscSignOut className="text-lg" />
+                          Logout
+                        </div>
+                      </li>
+                    </ul>
+                  )}
+                </div>
               </div>
             ) : (
               <Link to={"/login"}>

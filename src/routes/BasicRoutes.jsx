@@ -6,6 +6,7 @@ import CategoryPage from "../pages/categoryPage/CategoryPage";
 import CartPage from "../pages/cartPage/CartPage";
 import RegisterPage from "../pages/registerPage/RegisterPage";
 import LoginPage from "../pages/loginpage/LoginPage";
+import NewArrival from "../pages/clientSide/home-page/NewArrival";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
       {
         path: "/category",
         element: <CategoryPage></CategoryPage>,
+        loader: () => fetch("category.json"),
+      },
+      {
+        path: "/new",
+        element: <NewArrival></NewArrival>,
         loader: () => fetch("category.json"),
       },
       {

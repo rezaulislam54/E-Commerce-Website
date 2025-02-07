@@ -25,7 +25,7 @@ const CoustomarReview = () => {
           style={{ fontFamily: "IntegralCF, sans-serif" }}
           className="text-center font-extrabold text-[32px] leading-[36px] md:text-5xl mb-6 md:mb-10 capitalize"
         >
-          BROWSE BY DRESS STYLE
+          OUR HAPPY CUSTOMERS
         </motion.h2>
       </div>
       <Swiper

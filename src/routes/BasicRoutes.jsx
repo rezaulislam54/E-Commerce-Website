@@ -8,6 +8,7 @@ import RegisterPage from "../pages/registerPage/RegisterPage";
 import LoginPage from "../pages/loginpage/LoginPage";
 import NewArrival from "../pages/clientSide/home-page/NewArrival";
 import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayoutes from "../layouts/DashboardLayoutes";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,20 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage></LoginPage>,
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayoutes></DashboardLayoutes>,
+    // children: [
+    //   {
+    //     path: "/dashboard",
+    //     element: <UserProfile></UserProfile>,
+    //   },
+    //   {
+    //     path: "/dashboard/update-user",
+    //     element: <UpdateProfile></UpdateProfile>,
+    //   },
+    // ],
   },
 ]);
 

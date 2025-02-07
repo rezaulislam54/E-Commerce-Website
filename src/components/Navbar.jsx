@@ -199,13 +199,14 @@ const Navbar = () => {
                       className="menu menu-sm dropdown-content  z-[1000] divide-y-[1px] divide-[#2c333f] overflow-hidden rounded-md border-[1px] border-[#2c333f] bg-[#161d29]  md:-mr-11 w-36 p-2 shadow"
                     >
                       <li>
-                        <div
+                        <Link
+                          to={"/dashboard"}
                           onClick={() => setclose(false)}
                           className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-[#afb2bf] hover:bg-[#2c333f] hover:text-[#dbddea]"
                         >
                           <VscDashboard className="text-lg" />
                           Dashboard
-                        </div>
+                        </Link>
                       </li>
                       {/* <li>
                         <a>Settings</a>

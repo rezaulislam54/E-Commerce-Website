@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 import "../../../App.css";
 
 // import required modules
-import { Autoplay, EffectCoverflow, Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import * as motion from "framer-motion/client";
 
 const CoustomarReview = () => {

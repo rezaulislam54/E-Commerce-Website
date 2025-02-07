@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../provider/AuthContexProvider";
 import { Navigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../authProvider/AuthContextProvider";
 import Spinar from "../components/Spinar";
 
 const PrivateRoutes = ({ children }) => {

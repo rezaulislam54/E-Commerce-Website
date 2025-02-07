@@ -44,14 +44,14 @@ const Navbar = () => {
       <li>
         <Link to={"/category"}>Brand</Link>
       </li>
-      <li>
+      {/* <li>
         <Link to={"/category"}>Category</Link>
-      </li>
+      </li> */}
     </>
   );
   return (
     <div className="bg-base-100 shadow-lg">
-      <div className="navbar justify-between  container mx-auto md:px-10 px-3 py-5">
+      <div className="navbar justify-between  container mx-auto md:px-10 px-3 py-2">
         <div className="">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

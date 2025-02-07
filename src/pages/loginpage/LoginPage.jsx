@@ -3,9 +3,15 @@ import logo from "../../assets/signIn.jpg";
 import { useContext, useRef } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../authProvider/AuthContextProvider";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
-  const { signInEmailPassword, googleSignIn } = useContext(AuthContext);
+  const {
+    signInEmailPassword,
+    googleSignIn,
+    updateUserProfile,
+    ResetPassword,
+  } = useContext(AuthContext);
   const emailRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
@@ -38,24 +44,24 @@ const LoginPage = () => {
       });
   };
 
-  //   const handlePasswordReset = () => {
-  //     const email = emailRef.current.value;
-  //     if (!email) {
-  //       return toast.error("Please Provide Your Email");
-  //     } else if (
-  //       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
-  //     ) {
-  //       toast("Provide a Valide email");
-  //       return;
-  //     }
-  //     ResetPassword(email)
-  //       .then(() => {
-  //         alert("Please Checke Your Email");
-  //       })
-  //       .catch((error) => {
-  //         toast.error(error.message);
-  //       });
-  //   };
+  const handlePasswordReset = () => {
+    const email = emailRef.current.value;
+    if (!email) {
+      return toast.error("Please Provide Your Email");
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)
+    ) {
+      toast("Provide a Valide email");
+      return;
+    }
+    ResetPassword(email)
+      .then(() => {
+        alert("Please Checke Your Email");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
   const handleGoogleLogin = (e) => {
     e.preventDefault();
@@ -226,7 +232,7 @@ const LoginPage = () => {
 
                   <label className="label mt-1">
                     <a
-                      //   onClick={handlePasswordReset}
+                      onClick={handlePasswordReset}
                       className="label-text-alt link link-hover"
                     >
                       Forgot password?

@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -40,6 +41,17 @@ const AuthContextProvider = ({ children }) => {
     signInWithPopup(auth, googleProvider);
   };
 
+  // update profile
+  const updateUserProfile = (obj) => {
+    setLoading(true);
+    return updateProfile(auth.currentUser, obj);
+  };
+
+  const ResetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
+
   useEffect(() => {
     const unsebscribe = onAuthStateChanged(auth, (currentUser) => {
       setuser(currentUser);
@@ -61,6 +73,8 @@ const AuthContextProvider = ({ children }) => {
     googleSignIn,
     signUpEmailAndPassword,
     signInEmailPassword,
+    updateUserProfile,
+    ResetPassword,
   };
 
   return <AuthContext.Provider value={Info}>{children}</AuthContext.Provider>;

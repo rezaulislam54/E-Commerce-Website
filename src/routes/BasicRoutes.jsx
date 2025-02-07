@@ -7,6 +7,7 @@ import CartPage from "../pages/cartPage/CartPage";
 import RegisterPage from "../pages/registerPage/RegisterPage";
 import LoginPage from "../pages/loginpage/LoginPage";
 import NewArrival from "../pages/clientSide/home-page/NewArrival";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +36,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <CartPage></CartPage>,
+        element: (
+          <PrivateRoutes>
+            <CartPage></CartPage>
+          </PrivateRoutes>
+        ),
       },
     ],
   },

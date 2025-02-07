@@ -30,7 +30,9 @@ async function run() {
     // await client.connect();
 
     const ProductsCollections = client.db('EcommerceDB').collection('products');
+    const productCartCollection = client.db('EcommerceDB').collection('myCarts'); 
 
+    // products related api 
     app.get("/products", async (req, res) => {
        const products = await ProductsCollections.find().toArray();
        res.send(products);
@@ -42,6 +44,23 @@ async function run() {
         res.send(product);
     })
 
+    // myCarts Related api 
+    app.get("/carts", async (req, res) => {
+      const myCarts = await productCartCollection.find().toArray();
+      res.send(myCarts);
+    })
+
+    app.get("/carts/:email", async (req, res) => {
+        const query = {email: (req.params.email)};
+        const myCart = await productCartCollection.find(query).toArray();
+        res.send(myCart);
+    })
+
+    app.post("/carts", async (req, res) => {
+      const newCarts = req.body;
+      const result = await productCartCollection.insertOne(newCarts);
+      res.send(result);
+    })
 
    // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

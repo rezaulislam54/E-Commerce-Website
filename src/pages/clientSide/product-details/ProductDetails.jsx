@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 // import { FaCircleCheck } from "react-icons/fa6";
-import { useLoaderData } from "react-router-dom";
+import { Navigate, useLoaderData } from "react-router-dom";
 import ProductReview from "./ProductReview";
 import Product from "../home-page/product";
 import { useContext, useEffect, useState } from "react";
@@ -8,21 +8,22 @@ import { useContext, useEffect, useState } from "react";
 // import { AiOutlineCheck } from "react-icons/ai";
 import { FaCheck } from "react-icons/fa";
 import { AuthContext } from "../../../authProvider/AuthContextProvider";
+import Swal from "sweetalert2";
 
 const ProductDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   const product = useLoaderData();
-  // const { id } = useParams();
-  // const product = products?.find((pro) => pro.id === +id);
   const [Productimg, setproductimg] = useState(product.product_images[0]);
   const [index, setindex] = useState(0);
   const [color, setcolor] = useState(0);
-
-  const { products } = useContext(AuthContext);
+  const { user, products } = useContext(AuthContext);
+  const email = user?.email;
 
   const {
+    id,
     product_title,
     product_price,
     product_images,
@@ -30,7 +31,57 @@ const ProductDetails = () => {
     product_rating,
     product_discount_percent,
     product_review,
+    product_size,
   } = product;
+
+  const handleAddToCard = (
+    email,
+    id,
+    product_title,
+    product_price,
+    product_images,
+    product_discount_price,
+    product_rating,
+    product_review,
+    product_size
+  ) => {
+    const info = {
+      email,
+      id,
+      product_title,
+      product_price,
+      product_images,
+      product_rating,
+      product_discount_price,
+      product_review,
+      product_size,
+    };
+    console.log(info);
+
+    if (user) {
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(info),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              title: "Success!",
+              text: "Product Add to Cart Successfully!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            });
+          }
+        });
+    } else {
+      Navigate("/login");
+    }
+  };
 
   return (
     <div className="container mx-auto md:px-10 my-12">
@@ -186,7 +237,23 @@ const ProductDetails = () => {
             <span className="bg-[#FF33331A] font-bold rounded-full px-3 py-1 text-[16px]">
               - <span className="mx-7">1</span>+
             </span>
-            <button className="bg-[#000000] text-white rounded-full px-32 py-1 text-[16px]">
+            <button
+              onClick={() =>
+                handleAddToCard(
+                  email,
+                  id,
+                  product_title,
+                  product_price,
+                  product_images,
+                  product_discount_price,
+                  product_rating,
+                  product_discount_percent,
+                  product_review,
+                  product_size
+                )
+              }
+              className="bg-[#000000] text-white rounded-full px-32 py-1 text-[16px]"
+            >
               Add to Cart
             </button>
           </div>

@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import AdminNavbar from "../components/adminSide/AdminNavbar";
-import { FaRegUserCircle } from "react-icons/fa";
+import { FaCartPlus, FaRegUserCircle } from "react-icons/fa";
 import { MdManageHistory } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { RiSecurePaymentLine } from "react-icons/ri";
@@ -10,6 +10,7 @@ import { LiaUserEditSolid } from "react-icons/lia";
 import { TbLogout } from "react-icons/tb";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../authProvider/AuthContextProvider";
+import { BiAddToQueue } from "react-icons/bi";
 
 const DashboardLayoutes = () => {
   const [show, setShow] = useState(false);
@@ -63,6 +64,32 @@ const DashboardLayoutes = () => {
               </div>
               <p className={`${show ? "" : "hidden"}`}>update Profile</p>
             </Link>
+
+            {/* Add Product  */}
+            <Link
+              to={"/dashboard/add-product"}
+              className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer"
+            >
+              <div
+                className="tooltip  tooltip-right"
+                data-tip={`${show ? "" : "Add Product"}`}
+              >
+                <BiAddToQueue />
+              </div>
+              <p className={`${show ? "" : "hidden"}`}>Add Product</p>
+            </Link>
+
+            {/* Cart */}
+            <div className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer">
+              <div
+                className="tooltip  tooltip-right"
+                data-tip={`${show ? "" : "My Cart"}`}
+              >
+                <FaCartPlus />
+              </div>
+              <p className={`${show ? "" : "hidden"}`}>My Cart</p>
+            </div>
+
             {/* manage product */}
             <div className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer">
               <div
@@ -73,6 +100,7 @@ const DashboardLayoutes = () => {
               </div>
               <p className={`${show ? "" : "hidden"}`}>Manage Product</p>
             </div>
+
             {/* payment */}
             <div className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer">
               <div

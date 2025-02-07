@@ -9,6 +9,9 @@ import LoginPage from "../pages/loginpage/LoginPage";
 import NewArrival from "../pages/clientSide/home-page/NewArrival";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayoutes from "../layouts/DashboardLayoutes";
+import UserProfile from "../components/adminSide/UserProfile";
+import UpdateProfile from "../components/adminSide/UpdateProfile";
+import AddProduct from "../components/adminSide/AddProduct";
 
 const router = createBrowserRouter([
   {
@@ -55,16 +58,20 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayoutes></DashboardLayoutes>,
-    // children: [
-    //   {
-    //     path: "/dashboard",
-    //     element: <UserProfile></UserProfile>,
-    //   },
-    //   {
-    //     path: "/dashboard/update-user",
-    //     element: <UpdateProfile></UpdateProfile>,
-    //   },
-    // ],
+    children: [
+      {
+        path: "/dashboard",
+        element: <UserProfile></UserProfile>,
+      },
+      {
+        path: "/dashboard/update-user",
+        element: <UpdateProfile></UpdateProfile>,
+      },
+      {
+        path: "/dashboard/add-product",
+        element: <AddProduct></AddProduct>,
+      },
+    ],
   },
 ]);
 

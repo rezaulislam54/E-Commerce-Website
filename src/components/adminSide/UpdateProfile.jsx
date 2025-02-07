@@ -1,8 +1,39 @@
 import { useContext } from "react";
 import { AuthContext } from "../../authProvider/AuthContextProvider";
+import Swal from "sweetalert2";
+import { Navigate } from "react-router-dom";
 
 const UpdateProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, UpdateUser, setLoading } = useContext(AuthContext);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const image = e.target.image.value;
+    const pass = { name, image };
+    console.log(pass);
+    UpdateUser({ displayName: name, photoURL: image })
+      .then(() => {
+        setLoading(false);
+        Navigate(location?.state ? location.state : "/");
+        Swal.fire({
+          title: "Success!",
+          text: "Acount Created Successfully!",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        Swal.fire({
+          title: "error!",
+          text: err.message,
+          icon: "error",
+          confirmButtonText: "Ok",
+        });
+      });
+  };
+
   return (
     <section className="p-6 text-gray-100">
       <form
@@ -18,6 +49,7 @@ const UpdateProfile = () => {
           </label>
           <input
             id="name"
+            name="name"
             type="text"
             defaultValue={user?.displayName}
             placeholder="Your name"
@@ -30,10 +62,11 @@ const UpdateProfile = () => {
             Email
           </label>
           <input
-            id="email"
+            id=""
             type="email"
             defaultValue={user?.email}
             placeholder="Your email"
+            name="email"
             required=""
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 bg-gray-800"
           />
@@ -46,12 +79,14 @@ const UpdateProfile = () => {
             id="message"
             type="text"
             defaultValue={user?.photoURL}
+            name="image"
             placeholder="Message..."
             className="block w-full p-2 rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 bg-gray-800"
           ></input>
         </div>
         <div>
           <button
+            onSubmit={handleSubmit}
             type="submit"
             className="w-full px-4 py-2 font-bold rounded shadow focus:outline-none focus:ring hover:ring focus:ring-opacity-50 bg-violet-400 focus:ring-violet-400 hover:ring-violet-400 text-gray-900"
           >

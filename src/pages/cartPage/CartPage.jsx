@@ -1,8 +1,22 @@
+import { useContext, useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { MdChevronRight } from "react-icons/md";
 import { RiDeleteBinFill } from "react-icons/ri";
+import { AuthContext } from "../../authProvider/AuthContextProvider";
+import SingleCart from "./SingleCart";
 
 const CartPage = () => {
+  const { user } = useContext(AuthContext);
+  const [Cartproducts, setCartProducts] = useState([]);
+
+  const url = `http://localhost:5000/carts/${user.email}`;
+
+  useEffect(() => {
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => setCartProducts(data));
+  }, [url]);
+  console.log(Cartproducts);
   return (
     <div className="container mx-auto md:px-10 px-3">
       <h2 className="flex items-center my-3">
@@ -18,7 +32,11 @@ const CartPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-6 gap-5 my-5">
         <div className=" md:col-span-4 border p-5 shadow-lg rounded-xl">
           <div className="grid gap-3">
-            <div className="flex justify-between items-center w-full gap-5 border p-3 rounded-xl">
+            {Cartproducts?.map((product) => (
+              <SingleCart key={product._id} product={product}></SingleCart>
+            ))}
+
+            {/* <div className="flex justify-between items-center w-full gap-5 border p-3 rounded-xl">
               <div className="w-36 bg-[#FF33331A] rounded-lg">
                 <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726511359/Frame_33_yevjec.png" />
               </div>
@@ -86,7 +104,7 @@ const CartPage = () => {
                   </h2>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 

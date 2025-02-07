@@ -1,8 +1,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../assets/signUp.jpg";
 import { useContext } from "react";
-import { AuthContext } from "../../authProvider/AuthContextProvider";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../authProvider/AuthContextProvider";
+import { TiArrowLeftOutline } from "react-icons/ti";
 
 const RegisterPage = () => {
   const { signUpEmailAndPassword, setLoading, UpdateUser, googleSignIn } =
@@ -93,9 +94,12 @@ const RegisterPage = () => {
             >
               <Link
                 to={"/"}
-                className="text-lg ml-5 font-semibold text-white my-3 cursor-pointer hover:bg-[#FF497C] inline-block rounded py-1 px-2 hover:text-white duration-200"
+                className="text-lg ml-5 font-semibold text-black my-3 cursor-pointer hover:bg-[#FF497C] inline-block rounded py-1 px-2 hover:text-white duration-200"
               >
-                <i className="bx bx-left-arrow-alt"></i> <span>Back Home</span>
+                <span>
+                  <TiArrowLeftOutline className="inline-block mr-2 mb-1" />
+                  Back Home
+                </span>
               </Link>
 
               <p className="font-bold text-3xl mt-20 mx-6">

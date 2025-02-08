@@ -7,12 +7,8 @@ import toast from "react-hot-toast";
 import { TiArrowLeftOutline } from "react-icons/ti";
 
 const LoginPage = () => {
-  const {
-    signInEmailPassword,
-    googleSignIn,
-    updateUserProfile,
-    ResetPassword,
-  } = useContext(AuthContext);
+  const { signInEmailPassword, googleSignIn, ResetPassword } =
+    useContext(AuthContext);
   const emailRef = useRef();
   const navigate = useNavigate();
   const location = useLocation();
@@ -250,9 +246,21 @@ const LoginPage = () => {
                   </label>
                 </div>
 
-                <button className="px-3 py-2 bg-[#FF497C] hover:bg-[#ab3154] rounded text-white font-semibold">
-                  Sign In
-                </button>
+                <div>
+                  <button className="px-3 py-2 bg-[#FF497C] hover:bg-[#ab3154] rounded text-white font-semibold">
+                    Sign In
+                  </button>
+
+                  <Link
+                    to={"/"}
+                    className="text-lg lg:hidden  float-end font-semibold text-black cursor-pointer hover:bg-[#FF497C] inline-block rounded py-1 px-2 hover:text-white duration-200"
+                  >
+                    <span>
+                      <TiArrowLeftOutline className="inline-block mr-2 mb-1" />
+                      Back Home
+                    </span>
+                  </Link>
+                </div>
               </form>
             </div>
           </div>

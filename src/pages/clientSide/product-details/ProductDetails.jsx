@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 // import { FaCircleCheck } from "react-icons/fa6";
-import { Navigate, useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Product from "../home-page/product";
 import { useContext, useEffect, useState } from "react";
 // import { IoIosCheckmark } from "react-icons/io";
@@ -20,6 +20,7 @@ const ProductDetails = () => {
   }, []);
 
   const product = useLoaderData();
+  const navigate = useNavigate();
   const [Productimg, setproductimg] = useState(product.product_images[0]);
   const [index, setindex] = useState(0);
   const [color, setcolor] = useState(0);
@@ -74,7 +75,13 @@ const ProductDetails = () => {
           }
         });
     } else {
-      Navigate("/login");
+      Swal.fire({
+        title: "Error!",
+        text: "please Login then try again!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+      navigate("/login");
     }
   };
 

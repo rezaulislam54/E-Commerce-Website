@@ -42,11 +42,13 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const LognOut = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
   const googleSignIn = () => {
-    signInWithPopup(auth, googleProvider);
+    setLoading(true);
+    return signInWithPopup(auth, googleProvider);
   };
 
   // update profile

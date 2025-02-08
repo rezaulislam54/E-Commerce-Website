@@ -240,9 +240,21 @@ const RegisterPage = () => {
                     </fieldset>
                   </div>
 
-                  <button className="px-3 py-2 bg-[#FF497C] hover:bg-[#ab3154] rounded text-white font-semibold">
-                    Sign Up
-                  </button>
+                  <div>
+                    <button className="px-3 py-2 bg-[#FF497C] hover:bg-[#ab3154] rounded text-white font-semibold">
+                      Sign Up
+                    </button>
+
+                    <Link
+                      to={"/"}
+                      className="text-lg lg:hidden  float-end font-semibold text-black cursor-pointer hover:bg-[#FF497C] inline-block rounded py-1 px-2 hover:text-white duration-200"
+                    >
+                      <span>
+                        <TiArrowLeftOutline className="inline-block mr-2 mb-1" />
+                        Back Home
+                      </span>
+                    </Link>
+                  </div>
                 </form>
               </div>
             </div>

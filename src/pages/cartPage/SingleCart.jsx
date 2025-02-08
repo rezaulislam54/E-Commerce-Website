@@ -10,11 +10,11 @@ const SingleCart = ({ product, handleProductDelete }) => {
       <div className="flex-grow w-full">
         <div className="flex relative justify-between text-[20px] font-bold">
           <h2>{productName}</h2>
-          <div className="lg:flex hidden  mr-10 gap-x-0  lg:gap-x-16 ">
+          <div className="lg:flex hidden  mr-16 gap-x-0  lg:gap-x-16 ">
             <span className="font-medium">Quantity</span>
             <span className="font-medium">total</span>
           </div>
-          <div className="lg:flex absolute -bottom-16 xl:left-[266px] lg:left-44 hidden gap-x-0  lg:gap-x-28 ">
+          <div className="lg:flex absolute -bottom-16 xl:left-[270px] lg:left-44 hidden gap-x-0  lg:gap-x-28 ">
             <span className="font-medium">{quantity}</span>
             <span className="font-medium">{price}</span>
           </div>

@@ -208,20 +208,8 @@ const CartPage = ({ AdminCardProduct }) => {
 
       <h1 className="text-4xl font-bold">Your cart</h1>
 
-      <div
-        className={`${
-          !AdminCardProduct
-            ? "grid grid-cols-1 md:grid-cols-6 gap-5 my-5"
-            : "my-5 grid grid-cols-1"
-        }`}
-      >
-        <div
-          className={`${
-            !AdminCardProduct
-              ? " md:col-span-4 border p-5 shadow-lg rounded-xl"
-              : "border p-5 shadow-lg rounded-xl"
-          }`}
-        >
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-5 my-5">
+        <div className=" md:col-span-4 border p-5 shadow-lg rounded-xl">
           <div className="grid gap-3">
             {Cartproducts?.map((product) => (
               <SingleCart
@@ -303,11 +291,7 @@ const CartPage = ({ AdminCardProduct }) => {
           </div>
         </div>
 
-        <div
-          className={`${
-            AdminCardProduct ? "hidden" : "block"
-          } h-fit space-y-4 md:col-span-2 border-2 rounded-xl shadow-lg p-5`}
-        >
+        <div className=" h-fit space-y-4 md:col-span-2 border-2 rounded-xl shadow-lg p-5">
           <h1 className="text-2xl font-bold">Order Summary</h1>
           <div className="flex items-center justify-between">
             <p>Subtotal</p>

@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../authProvider/AuthContextProvider";
 
 const AdminNavbar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -23,10 +26,7 @@ const AdminNavbar = () => {
             className="btn btn-ghost btn-circle avatar"
           >
             <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS Navbar component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
+              <img alt="Tailwind CSS Navbar component" src={user.photoURL} />
             </div>
           </div>
           <ul

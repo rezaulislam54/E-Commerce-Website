@@ -38,13 +38,16 @@ const ProductDetails = () => {
     product_size,
   } = product;
 
+  const image = product_images[0];
+  console.log(image);
+
   const handleAddToCard = () => {
     const info = {
       productName: product_title,
       price: product_price,
       quantity: 1,
       product_size: product_size,
-      photo: product_images[0],
+      photo: image,
       email: email,
       prodId: _id,
     };
@@ -85,7 +88,7 @@ const ProductDetails = () => {
         <div className="space-y-4 *:w-full *:h-[142px] ">
           <img
             onClick={() => setproductimg(product_images[0])}
-            className="bg-[#F0EEED] rounded-xl cursor-pointer"
+            className="bg-[#F0EEED] rounded-xl  cursor-pointer"
             src={product_images[0]}
           />
           <img
@@ -101,8 +104,8 @@ const ProductDetails = () => {
           {/* <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726511359/Frame_33_yevjec.png" /> */}
         </div>
 
-        <div className="col-span-3 size-96 bg-[#F0EEED] rounded-xl flex items-center justify-center">
-          <img src={Productimg} />
+        <div className="col-span-3 size-auto bg-[#F0EEED] rounded-xl flex items-center justify-center">
+          <img className="size-80" src={Productimg} />
         </div>
 
         <div className="col-span-5 ml-4">

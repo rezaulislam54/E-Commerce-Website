@@ -7,7 +7,7 @@ import SingleCart from "./SingleCart";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
-const CartPage = () => {
+const CartPage = ({ AdminCardProduct }) => {
   const {
     user,
     // cartUpdate: [isCartUpdated, setIsCartUpdated],
@@ -33,7 +33,7 @@ const CartPage = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://coffee-shop-server-jd3g.onrender.com/coffees/${_id}`, {
+        fetch(`http://localhost:5000/carts/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -184,18 +184,44 @@ const CartPage = () => {
 
   return (
     <div className="container mx-auto md:px-10 px-3">
-      <h2 className="flex items-center my-3">
-        Home
-        <span className="mx-1">
-          <MdChevronRight />
-        </span>
-        Cart
-      </h2>
+      {!AdminCardProduct ? (
+        <h2 className="flex items-center my-3">
+          Home
+          <span className="mx-1">
+            <MdChevronRight />
+          </span>
+          Cart
+        </h2>
+      ) : (
+        <h2 className="flex items-center my-3">
+          Home
+          <span className="mx-1">
+            <MdChevronRight />
+          </span>
+          Dashboard
+          <span className="mx-1">
+            <MdChevronRight />
+          </span>
+          My-Cart
+        </h2>
+      )}
 
       <h1 className="text-4xl font-bold">Your cart</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-5 my-5">
-        <div className=" md:col-span-4 border p-5 shadow-lg rounded-xl">
+      <div
+        className={`${
+          !AdminCardProduct
+            ? "grid grid-cols-1 md:grid-cols-6 gap-5 my-5"
+            : "my-5 grid grid-cols-1"
+        }`}
+      >
+        <div
+          className={`${
+            !AdminCardProduct
+              ? " md:col-span-4 border p-5 shadow-lg rounded-xl"
+              : "border p-5 shadow-lg rounded-xl"
+          }`}
+        >
           <div className="grid gap-3">
             {Cartproducts?.map((product) => (
               <SingleCart
@@ -277,7 +303,11 @@ const CartPage = () => {
           </div>
         </div>
 
-        <div className=" h-fit space-y-4 md:col-span-2 border-2 rounded-xl shadow-lg p-5">
+        <div
+          className={`${
+            AdminCardProduct ? "hidden" : "block"
+          } h-fit space-y-4 md:col-span-2 border-2 rounded-xl shadow-lg p-5`}
+        >
           <h1 className="text-2xl font-bold">Order Summary</h1>
           <div className="flex items-center justify-between">
             <p>Subtotal</p>

@@ -12,6 +12,7 @@ import DashboardLayoutes from "../layouts/DashboardLayoutes";
 import UserProfile from "../components/adminSide/UserProfile";
 import UpdateProfile from "../components/adminSide/UpdateProfile";
 import AddProduct from "../components/adminSide/AddProduct";
+import AdminCardProduct from "../components/adminSide/AdminCardProduct";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/add-product",
         element: <AddProduct></AddProduct>,
+      },
+      {
+        path: "/dashboard/cart",
+        element: <AdminCardProduct></AdminCardProduct>,
       },
     ],
   },

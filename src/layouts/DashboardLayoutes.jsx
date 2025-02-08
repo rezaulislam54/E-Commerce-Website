@@ -14,7 +14,7 @@ import { BiAddToQueue } from "react-icons/bi";
 
 const DashboardLayoutes = () => {
   const [show, setShow] = useState(false);
-  const { LognOut } = useContext(AuthContext);
+  const { user, LognOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleLogout = () => {
     LognOut().then(() => {
@@ -80,7 +80,10 @@ const DashboardLayoutes = () => {
             </Link>
 
             {/* Cart */}
-            <div className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer">
+            <Link
+              to={"/dashboard/cart"}
+              className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer"
+            >
               <div
                 className="tooltip  tooltip-right"
                 data-tip={`${show ? "" : "My Cart"}`}
@@ -88,7 +91,7 @@ const DashboardLayoutes = () => {
                 <FaCartPlus />
               </div>
               <p className={`${show ? "" : "hidden"}`}>My Cart</p>
-            </div>
+            </Link>
 
             {/* manage product */}
             <div className="flex gap-3 items-center px-5 py-3 text-2xl hover:bg-white hover:text-black cursor-pointer">

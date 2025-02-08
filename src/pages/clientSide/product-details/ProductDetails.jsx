@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 // import { FaCircleCheck } from "react-icons/fa6";
 import { Navigate, useLoaderData } from "react-router-dom";
-import ProductReview from "./ProductReview";
 import Product from "../home-page/product";
 import { useContext, useEffect, useState } from "react";
 // import { IoIosCheckmark } from "react-icons/io";
@@ -9,6 +8,10 @@ import { useContext, useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
 import { AuthContext } from "../../../authProvider/AuthContextProvider";
 import Swal from "sweetalert2";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import ReviewRating from "./tabsContant/ReviewRating";
+import ProductDetailsTab from "./tabsContant/ProductDetailsTab";
 
 const ProductDetails = () => {
   useEffect(() => {
@@ -236,55 +239,24 @@ const ProductDetails = () => {
       </div>
 
       {/* revew and rating */}
-      <div>
-        <div className=" text-xl font-medium my-10 border-b pb-2 text-center grid col-span-1 md:grid-cols-2 lg:grid-cols-3">
-          <h2>Product Details</h2>
-          <h2>Rating & Reviews</h2>
-          <h2>FAQs</h2>
-        </div>
+      <div className="mt-8">
+        <Tabs>
+          <TabList>
+            <div className="flex justify-evenly">
+              <Tab>Product Details</Tab>
+              <Tab>Rating & Reviews</Tab>
+              <Tab>FAQs</Tab>
+            </div>
+          </TabList>
 
-        <div className="flex justify-between items-center">
-          <h2>
-            <span className="text-[24px] font-bold mr-1">All Reviews</span> (
-            {product_review.length})
-          </h2>
-          <div className="flex items-center">
-            <h2>
-              <ul className="menu menu-horizontal px-1">
-                <li>
-                  <details className="z-30">
-                    <summary>Shope</summary>
-                    <ul>
-                      <li>
-                        <a>t-Shirt</a>
-                      </li>
-                      <li>
-                        <a>Shirts</a>
-                      </li>
-                    </ul>
-                  </details>
-                </li>
-              </ul>
-            </h2>
-            <button className="bg-[#000000] text-white rounded-full px-5 py-1 text-[16px]">
-              Write a Review
-            </button>
-          </div>
-        </div>
-
-        {/* review section */}
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {product_review?.map((review, index) => (
-            <ProductReview key={index} review={review}></ProductReview>
-          ))}
-        </div>
-
-        <div className="text-center my-6">
-          <button className="border py-2 px-6 rounded-full shadow-sm ">
-            Load More Reviews
-          </button>
-        </div>
+          <TabPanel>
+            <ProductDetailsTab></ProductDetailsTab>
+          </TabPanel>
+          <TabPanel>
+            <ReviewRating product_review={product_review}></ReviewRating>
+          </TabPanel>
+          <TabPanel></TabPanel>
+        </Tabs>
       </div>
 
       {/* You might also like section */}
@@ -293,7 +265,7 @@ const ProductDetails = () => {
         <h2 className="text-center text-5xl font-bold">YOU MIGHT ALSO LIKE</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10 px-5 lg:px-0">
           {products?.slice(5, 9)?.map((product) => (
-            <Product key={product.id} product={product}></Product>
+            <Product key={product._id} product={product}></Product>
           ))}
         </div>
       </div>

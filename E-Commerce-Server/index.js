@@ -68,44 +68,7 @@ async function run() {
       res.send(result);
     })
 
-    // // * 
-    //     app.post("/carts", async (req, res) => {
-    //         const data = req.body;
-    //         let message;
-
-    //         const alreadyInCart = await productCartCollection.findOne({
-    //             email: data.email,
-    //             prodId: data.prodId,
-    //         });
-
-    //         if (alreadyInCart !== null && alreadyInCart.photo) {
-    //             //? Already Added. Cannot be added more
-    //             message = {
-    //                 status: 403,
-    //                 message: "Already In Cart",
-    //                 data: { exists: true },
-    //             };
-    //             return res.json(message);
-    //         } else {
-    //             //? Need to add the product
-    //             const cartData = await productCartCollection.insertOne(data);
-    //             if (cartData.acknowledged) {
-    //                 message = {
-    //                     status: 200,
-    //                     message: "Added to cart successfully",
-    //                     data: { exists: false },
-    //                 };
-    //                 return res.json(message);
-    //             } else {
-    //                 message = {
-    //                     status: 500,
-    //                     message: "internal server error",
-    //                     data: { exists: false },
-    //                 };
-    //                 return res.json(message);
-    //             }
-    //         }
-    //     });
+  
 
    // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });

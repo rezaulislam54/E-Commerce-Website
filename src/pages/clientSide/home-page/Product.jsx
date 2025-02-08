@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Product = ({ product }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const navigate = useNavigate();
+
   const {
     _id,
     product_images,
@@ -22,7 +29,10 @@ const Product = ({ product }) => {
 
   return (
     <div>
-      <Link to={`product/${_id}`}>
+      <div
+        onClick={() => navigate(`/product/${_id}`)}
+        className="cursor-pointer"
+      >
         <div className="">
           <div className="bg-[#F0EEED] flex items-center justify-center p-5 rounded-[20px] h-[310px]">
             <img
@@ -89,7 +99,7 @@ const Product = ({ product }) => {
             </span>
           </h2>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

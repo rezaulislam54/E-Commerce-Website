@@ -7,13 +7,18 @@ import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const CartPage = ({ AdminCardProduct }) => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const {
     user,
     // cartUpdate: [isCartUpdated, setIsCartUpdated],
     // setLoading,
   } = useContext(AuthContext);
   const [Cartproducts, setCartProducts] = useState([]);
-  // const totalPrice = Cartproducts.reduce((acc, item) => acc + item.price, 0);
+  const totalPrice = Cartproducts.reduce((acc, item) => acc + item.price, 0);
 
   useEffect(() => {
     fetch(`http://localhost:5000/carts/${user.email}`)
@@ -21,11 +26,14 @@ const CartPage = ({ AdminCardProduct }) => {
       .then((data) => setCartProducts(data));
   }, [user]);
 
-  const handleProductDelete = (_id) => {
+  const handleProductDelete = (_id, photo) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
+      imageUrl: `${photo}`,
+      imageHeight: "100px",
+      imageWidth: "100px",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
@@ -43,7 +51,7 @@ const CartPage = ({ AdminCardProduct }) => {
             if (data.deleteCount > 0) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your file has been deleted.",
+                text: "Your file has been deleted successfully!",
                 icon: "success",
               });
             }
@@ -67,7 +75,14 @@ const CartPage = ({ AdminCardProduct }) => {
           body: JSON.stringify({ quantity: newQuantity }),
         })
           .then((res) => res.json())
-          .then((data) => toast.success(data.message));
+          .then((data) =>
+            Swal.fire({
+              title: "Success!",
+              text: "Product quantity Increase successfully!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            })
+          );
 
         return { ...item, quantity: newQuantity };
       }
@@ -92,7 +107,14 @@ const CartPage = ({ AdminCardProduct }) => {
           body: JSON.stringify({ quantity: newQuantity }),
         })
           .then((res) => res.json())
-          .then((data) => toast.success(data.message));
+          .then((data) =>
+            Swal.fire({
+              title: "Success!",
+              text: "Product quantity Decrease successfully!",
+              icon: "success",
+              confirmButtonText: "Ok",
+            })
+          );
 
         return { ...item, quantity: newQuantity };
       }
@@ -302,7 +324,7 @@ const CartPage = ({ AdminCardProduct }) => {
           </div>
           <div className="flex items-center justify-between">
             <p>Total</p>
-            <p className="text-2xl font-bold">$467</p>
+            <p className="text-2xl font-bold">${totalPrice}</p>
           </div>
 
           <div className="flex gap-4 justify-between">

@@ -12,6 +12,7 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ReviewRating from "./tabsContant/ReviewRating";
 import ProductDetailsTab from "./tabsContant/ProductDetailsTab";
+import FaqContant from "./tabsContant/FaqContant";
 
 const ProductDetails = () => {
   useEffect(() => {
@@ -255,7 +256,9 @@ const ProductDetails = () => {
           <TabPanel>
             <ReviewRating product_review={product_review}></ReviewRating>
           </TabPanel>
-          <TabPanel></TabPanel>
+          <TabPanel>
+            <FaqContant></FaqContant>{" "}
+          </TabPanel>
         </Tabs>
       </div>
 

@@ -1,7 +1,16 @@
 import { RiDeleteBinFill } from "react-icons/ri";
 
-const SingleCart = ({ product, handleProductDelete }) => {
-  const { _id, productName, price, quantity, product_size, photo } = product;
+const SingleCart = ({
+  product,
+  handleProductDelete,
+  handleIncrease,
+  handleDecrease,
+}) => {
+  const { _id, prodId, productName, price, quantity, product_size, photo } =
+    product;
+
+  console.log(prodId);
+
   return (
     <div className="flex justify-between items-center w-full gap-5 border p-3 rounded-xl">
       <div className="w-36 bg-[#FF33331A] rounded-lg">
@@ -33,7 +42,19 @@ const SingleCart = ({ product, handleProductDelete }) => {
         <div className="flex justify-between mt-2">
           <h2 className="text-2xl font-bold">${price}</h2>
           <h2 className="text-center bg-[#FF33331A] font-bold rounded-full px-3 py-1 text-[16px]">
-            - <span className="mx-5">1</span>+
+            <span
+              onClick={() => handleDecrease(prodId)}
+              className="cursor-pointer"
+            >
+              -
+            </span>
+            <span className="mx-5">{quantity}</span>
+            <span
+              onClick={() => handleIncrease(prodId)}
+              className="cursor-pointer"
+            >
+              +
+            </span>
           </h2>
         </div>
       </div>

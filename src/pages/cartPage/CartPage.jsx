@@ -1,11 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { MdChevronRight } from "react-icons/md";
-import { RiDeleteBinFill } from "react-icons/ri";
 import { AuthContext } from "../../authProvider/AuthContextProvider";
 import SingleCart from "./SingleCart";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const CartPage = ({ AdminCardProduct }) => {
   const {
@@ -54,59 +53,53 @@ const CartPage = ({ AdminCardProduct }) => {
   };
 
   // Quantity বাড়ানোর ফাংশন
-  // const handleIncrease = (id) => {
-  //   const updatedData = Cartproducts.map((item) => {
-  //     if (item.prodId === id) {
-  //       const newQuantity = item.quantity + 1;
+  const handleIncrease = (id) => {
+    const updatedData = Cartproducts.map((item) => {
+      if (item.prodId === id) {
+        const newQuantity = item.quantity + 1;
 
-  //       // সার্ভারে আপডেট পাঠানো
-  //       fetch(
-  //         `https://glowing-cosmetics-shop-server.vercel.app/addToCart/${id}`,
-  //         {
-  //           method: "PUT",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({ quantity: newQuantity }),
-  //         }
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => toast.success(data.message));
+        // সার্ভারে আপডেট পাঠানো
+        fetch(`http://localhost:5000/carts/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quantity: newQuantity }),
+        })
+          .then((res) => res.json())
+          .then((data) => toast.success(data.message));
 
-  //       return { ...item, quantity: newQuantity };
-  //     }
-  //     return item;
-  //   });
-  //   setCartProducts(updatedData);
-  // };
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+    setCartProducts(updatedData);
+  };
 
   // Quantity কমানোর ফাংশন
-  // const handleDecrease = (id) => {
-  //   const updatedData = Cartproducts.map((item) => {
-  //     if (item.prodId === id && item.quantity > 1) {
-  //       // Quantity 1 এর নিচে নামতে পারবে না
-  //       const newQuantity = item.quantity - 1;
+  const handleDecrease = (id) => {
+    const updatedData = Cartproducts.map((item) => {
+      if (item.prodId === id && item.quantity > 1) {
+        // Quantity 1 এর নিচে নামতে পারবে না
+        const newQuantity = item.quantity - 1;
 
-  //       // সার্ভারে আপডেট পাঠানো
-  //       fetch(
-  //         `https://glowing-cosmetics-shop-server.vercel.app/addToCart/${id}`,
-  //         {
-  //           method: "PUT",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify({ quantity: newQuantity }),
-  //         }
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => toast.success(data.message));
+        // সার্ভারে আপডেট পাঠানো
+        fetch(`http://localhost:5000/carts/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ quantity: newQuantity }),
+        })
+          .then((res) => res.json())
+          .then((data) => toast.success(data.message));
 
-  //       return { ...item, quantity: newQuantity };
-  //     }
-  //     return item;
-  //   });
-  //   setCartProducts(updatedData);
-  // };
+        return { ...item, quantity: newQuantity };
+      }
+      return item;
+    });
+    setCartProducts(updatedData);
+  };
 
   // const handleDelete = (prodId, photo) => {
   //   const deleteData = {
@@ -213,6 +206,8 @@ const CartPage = ({ AdminCardProduct }) => {
           <div className="grid gap-3">
             {Cartproducts?.map((product) => (
               <SingleCart
+                handleIncrease={handleIncrease}
+                handleDecrease={handleDecrease}
                 key={product._id}
                 handleProductDelete={handleProductDelete}
                 product={product}

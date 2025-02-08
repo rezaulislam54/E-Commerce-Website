@@ -62,6 +62,14 @@ async function run() {
       res.send(result);
     })
 
+    app.put("/carts/:id", async (req, res) => {
+      const prodId = req.params.id;
+      const {quantity} = req.body;
+      const updatedCart = { $set: {quantity: quantity} };
+      const result = await productCartCollection.updateOne({prodId :prodId}, updatedCart);
+      res.send(result);
+    })
+
     app.delete("/carts/:id", async (req, res) => {
       const qury = {_id: new ObjectId(req.params.id)};
       const result = await productCartCollection.deleteOne(qury);

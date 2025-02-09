@@ -4,20 +4,24 @@ import { MdChevronRight } from "react-icons/md";
 import { AuthContext } from "../../authProvider/AuthContextProvider";
 import SingleCart from "./SingleCart";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import { TiArrowLeftOutline } from "react-icons/ti";
 
 const CartPage = ({ AdminCardProduct }) => {
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const {
-    user,
-    // cartUpdate: [isCartUpdated, setIsCartUpdated],
-    // setLoading,
-  } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [Cartproducts, setCartProducts] = useState([]);
-  const totalPrice = Cartproducts.reduce((acc, item) => acc + item.price, 0);
+  const email = user.email;
+  const [totalPrice, setTotalPrice] = useState();
+  if (Cartproducts > 0) {
+    const totalPrice = Cartproducts.reduce((acc, item) => acc + item.price, 0);
+    setTotalPrice;
+    totalPrice;
+  }
 
   useEffect(() => {
     fetch(`http://localhost:5000/carts/${user.email}`)
@@ -45,7 +49,7 @@ const CartPage = ({ AdminCardProduct }) => {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            const remainingmy = Cartproducts.filter((c) => c._id !== _id);
+            const remainingmy = Cartproducts?.filter((c) => c._id !== _id);
             setCartProducts(remainingmy);
             if (data.deleteCount > 0) {
               Swal.fire({
@@ -61,7 +65,7 @@ const CartPage = ({ AdminCardProduct }) => {
 
   // Quantity বাড়ানোর ফাংশন
   const handleIncrease = (id) => {
-    const updatedData = Cartproducts.map((item) => {
+    const updatedData = Cartproducts?.map((item) => {
       if (item.prodId === id) {
         const newQuantity = item.quantity + 1;
 
@@ -92,7 +96,7 @@ const CartPage = ({ AdminCardProduct }) => {
 
   // Quantity কমানোর ফাংশন
   const handleDecrease = (id) => {
-    const updatedData = Cartproducts.map((item) => {
+    const updatedData = Cartproducts?.map((item) => {
       if (item.prodId === id && item.quantity > 1) {
         // Quantity 1 এর নিচে নামতে পারবে না
         const newQuantity = item.quantity - 1;
@@ -122,79 +126,35 @@ const CartPage = ({ AdminCardProduct }) => {
     setCartProducts(updatedData);
   };
 
-  // const handleDelete = (prodId, photo) => {
-  //   const deleteData = {
-  //     email: user?.email,
-  //   };
-
-  //   Swal.fire({
-  //     title: "Are you sure?",
-  //     text: "Do you want to delete this product?",
-  //     icon: "warning",
-  //     showCancelButton: true,
-  //     imageUrl: `${photo}`,
-  //     imageHeight: "100px",
-  //     imageWidth: "100px",
-  //     confirmButtonColor: "#82588D",
-  //     cancelButtonColor: "#87AC52",
-  //     confirmButtonText: "Yes, delete it!",
-  //   }).then((result) => {
-  //     if (result.isConfirmed) {
-  //       //   delete fetch
-  //       // setLoading(true);
-  //       fetch(
-  //         `https://glowing-cosmetics-shop-server.vercel.app/addToCart/${prodId}`,
-  //         {
-  //           method: "DELETE",
-  //           headers: {
-  //             "Content-Type": "application/json",
-  //           },
-  //           body: JSON.stringify(deleteData),
-  //         }
-  //       )
-  //         .then((response) => response.json())
-  //         .then(({ message, data: { exists } }) => {
-  //           // setLoading(false);
-  //           if (exists) {
-  //             toast.error(message);
-  //           } else {
-  //             toast.success(message);
-  //             setIsCartUpdated(!isCartUpdated);
-  //           }
-  //         });
-  //       Swal.fire({
-  //         title: "Deleted!",
-  //         text: "Your Products has been deleted.",
-  //         icon: "success",
-  //       });
-  //     }
-  //   });
-  // };
-
-  // // ক্যার্ট মুছানোর ��াংশন
-  // const handleDelete = (id) => {
-  //   fetch(`http://localhost:5000/carts/${user.email}/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //    .then(() => {
-  //       setIsCartUpdated(!isCartUpdated);
-  //       Swal.fire({
-  //         title: "Success!",
-  //         text: "Product deleted successfully!",
-  //         icon: "success",
-  //         confirmButtonText: "Ok",
-  //       });
-  //     })
-  //    .catch((error) => {
-  //       console.error("Error deleting product:", error);
-  //       Swal.fire({
-  //         title: "Error!",
-  //         text: "Failed to delete product!",
-  //         icon: "error",
-  //         confirmButtonText: "Ok",
-  //       });
-  //     });
-  // };
+  const handleAllCartDelete = (email) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/carts/email/${email}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setCartProducts("");
+            if (data.deleteCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
 
   return (
     <div className="container mx-auto md:px-10 px-3">
@@ -222,20 +182,26 @@ const CartPage = ({ AdminCardProduct }) => {
 
       <h1 className="text-4xl font-bold">Your cart</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-6 gap-5 my-5">
-        <div className=" md:col-span-4 border p-5 shadow-lg rounded-xl">
-          <div className="grid gap-3">
-            {Cartproducts?.map((product) => (
-              <SingleCart
-                handleIncrease={handleIncrease}
-                handleDecrease={handleDecrease}
-                key={product._id}
-                handleProductDelete={handleProductDelete}
-                product={product}
-              ></SingleCart>
-            ))}
+      {Cartproducts.length === 0 ? (
+        <div className="text-center font-bold text-xl px-5 py-12">
+          Your cart is currently <span className="text-red-500">empty!</span>{" "}
+          Please add some products to the cart, and they will appear here.
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-5 my-5">
+          <div className=" md:col-span-4 border p-5 shadow-lg rounded-xl">
+            <div className="grid gap-3">
+              {Cartproducts?.map((product) => (
+                <SingleCart
+                  handleIncrease={handleIncrease}
+                  handleDecrease={handleDecrease}
+                  key={product._id}
+                  handleProductDelete={handleProductDelete}
+                  product={product}
+                ></SingleCart>
+              ))}
 
-            {/* <div className="flex justify-between items-center w-full gap-5 border p-3 rounded-xl">
+              {/* <div className="flex justify-between items-center w-full gap-5 border p-3 rounded-xl">
               <div className="w-36 bg-[#FF33331A] rounded-lg">
                 <img src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726511359/Frame_33_yevjec.png" />
               </div>
@@ -304,46 +270,73 @@ const CartPage = ({ AdminCardProduct }) => {
                 </div>
               </div>
             </div> */}
+            </div>
+          </div>
+
+          <div className=" h-fit space-y-4 md:col-span-2 border-2 rounded-xl shadow-lg p-5">
+            <h1 className="text-2xl font-bold">Order Summary</h1>
+            <div className="flex items-center justify-between">
+              <p>Subtotal</p>
+              <p className="font-bold">$565</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <p>Discount (-20%)</p>
+              <p className="font-bold">-$113</p>
+            </div>
+            <div className="flex items-center justify-between border-b-2 pb-4">
+              <p>Delivery Fee</p>
+              <p className="font-bold">$15</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <p>Total</p>
+              <p className="text-2xl font-bold">${totalPrice}</p>
+            </div>
+
+            <div className="flex gap-4 justify-between">
+              <div className="bg-[#FF33331A] rounded-full px-3 py-2 flex-1">
+                <img
+                  className="inline-block size-5 mr-3"
+                  src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726852882/Frame_2x-removebg-preview_gby9t5.png"
+                />
+                <span>Add promo code</span>
+              </div>
+              <button className="bg-[#000000] text-white rounded-full px-8">
+                Apply
+              </button>
+            </div>
+
+            <div className="mt-4">
+              <button className="w-full bg-[#000000] text-white rounded-full py-3 ">
+                Go to Checkout <FaArrowRight className="inline-block ml-2" />
+              </button>
+            </div>
           </div>
         </div>
+      )}
 
-        <div className=" h-fit space-y-4 md:col-span-2 border-2 rounded-xl shadow-lg p-5">
-          <h1 className="text-2xl font-bold">Order Summary</h1>
-          <div className="flex items-center justify-between">
-            <p>Subtotal</p>
-            <p className="font-bold">$565</p>
-          </div>
-          <div className="flex items-center justify-between">
-            <p>Discount (-20%)</p>
-            <p className="font-bold">-$113</p>
-          </div>
-          <div className="flex items-center justify-between border-b-2 pb-4">
-            <p>Delivery Fee</p>
-            <p className="font-bold">$15</p>
-          </div>
-          <div className="flex items-center justify-between">
-            <p>Total</p>
-            <p className="text-2xl font-bold">${totalPrice}</p>
-          </div>
-
-          <div className="flex gap-4 justify-between">
-            <div className="bg-[#FF33331A] rounded-full px-3 py-2 flex-1">
-              <img
-                className="inline-block size-5 mr-3"
-                src="https://res.cloudinary.com/dvp64j4a3/image/upload/v1726852882/Frame_2x-removebg-preview_gby9t5.png"
-              />
-              <span>Add promo code</span>
-            </div>
-            <button className="bg-[#000000] text-white rounded-full px-8">
-              Apply
+      {/* continue shopping */}
+      <div
+        style={{ fontFamily: "IntegralCF, sans-serif" }}
+        className="flex justify-between"
+      >
+        <div>
+          <Link to={`/category`}>
+            <button className="bg-black px-5 py-2.5 text-white rounded-md">
+              <TiArrowLeftOutline className="inline-block mr-3 text-lg"></TiArrowLeftOutline>
+              Continue Shopping
             </button>
-          </div>
-
-          <div className="mt-4">
-            <button className="w-full bg-[#000000] text-white rounded-full py-3 ">
-              Go to Checkout <FaArrowRight className="inline-block ml-2" />
-            </button>
-          </div>
+          </Link>
+        </div>
+        <div>
+          <button
+            onClick={() => handleAllCartDelete(email)}
+            className="bg-black px-5 py-2.5 text-white rounded-md"
+          >
+            <span className="inline-block mr-3">
+              <RiDeleteBin5Line />
+            </span>
+            Clear Cart
+          </button>
         </div>
       </div>
     </div>

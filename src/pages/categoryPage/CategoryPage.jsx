@@ -24,7 +24,7 @@ const CategoryPage = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-12 gap-5 h-max justify-center lg:justify-start">
         {/* leftSide */}
-        <div className="col-span-1 hidden lg:block lg:col-span-4 border-2 border-[#F0EEED] rounded-xl px-8 py-5 space-y-4">
+        <div className="col-span-1 h-fit hidden lg:block lg:col-span-4 border-2 border-[#F0EEED] rounded-xl px-8 py-5 space-y-4">
           {/* filters */}
           <div className="text-3xl flex items-center justify-between ">
             <h2 className="font-bold">Filters</h2>

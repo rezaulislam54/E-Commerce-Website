@@ -36,11 +36,6 @@ const AuthContextProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const UpdateUser = (obj) => {
-    setLoading(true);
-    return updateProfile(auth.currentUser, obj);
-  };
-
   const LognOut = () => {
     setLoading(true);
     return signOut(auth);
@@ -76,7 +71,6 @@ const AuthContextProvider = ({ children }) => {
   const Info = {
     user,
     setuser,
-    UpdateUser,
     products,
     loading,
     setLoading,

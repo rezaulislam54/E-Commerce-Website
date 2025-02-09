@@ -6,8 +6,12 @@ import { AuthContext } from "../../authProvider/AuthContextProvider";
 import { TiArrowLeftOutline } from "react-icons/ti";
 
 const RegisterPage = () => {
-  const { signUpEmailAndPassword, setLoading, UpdateUser, googleSignIn } =
-    useContext(AuthContext);
+  const {
+    signUpEmailAndPassword,
+    setLoading,
+    updateUserProfile,
+    googleSignIn,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -23,7 +27,7 @@ const RegisterPage = () => {
     signUpEmailAndPassword(email, password)
       .then((result) => {
         console.log(result.user);
-        UpdateUser({ displayName: name, photoURL: image })
+        updateUserProfile({ displayName: name, photoURL: image })
           .then(() => {
             setLoading(false);
             navigate(location?.state ? location.state : "/");

@@ -4,15 +4,14 @@ import Swal from "sweetalert2";
 import { Navigate } from "react-router-dom";
 
 const UpdateProfile = () => {
-  const { user, UpdateUser, setLoading } = useContext(AuthContext);
+  const { user, updateUserProfile, setLoading } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
+    const email = e.target.email.value;
     const image = e.target.image.value;
-    const pass = { name, image };
-    console.log(pass);
-    UpdateUser({ displayName: name, photoURL: image })
+    updateUserProfile({ displayName: name, email: email, photoURL: image })
       .then(() => {
         setLoading(false);
         Navigate(location?.state ? location.state : "/");
@@ -26,9 +25,9 @@ const UpdateProfile = () => {
       .catch((err) => {
         setLoading(false);
         Swal.fire({
-          title: "error!",
-          text: err.message,
-          icon: "error",
+          title: "Success!",
+          text: "Acount Updated Successfully!",
+          icon: "Success",
           confirmButtonText: "Ok",
         });
       });
@@ -37,6 +36,7 @@ const UpdateProfile = () => {
   return (
     <section className="p-6 text-gray-100">
       <form
+        onSubmit={handleSubmit}
         noValidate=""
         className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow bg-gray-900"
       >
@@ -53,7 +53,6 @@ const UpdateProfile = () => {
             type="text"
             defaultValue={user?.displayName}
             placeholder="Your name"
-            required=""
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 bg-gray-800"
           />
         </div>
@@ -67,7 +66,6 @@ const UpdateProfile = () => {
             defaultValue={user?.email}
             placeholder="Your email"
             name="email"
-            required=""
             className="block w-full p-2 rounded focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 bg-gray-800"
           />
         </div>
@@ -86,7 +84,6 @@ const UpdateProfile = () => {
         </div>
         <div>
           <button
-            onSubmit={handleSubmit}
             type="submit"
             className="w-full px-4 py-2 font-bold rounded shadow focus:outline-none focus:ring hover:ring focus:ring-opacity-50 bg-violet-400 focus:ring-violet-400 hover:ring-violet-400 text-gray-900"
           >

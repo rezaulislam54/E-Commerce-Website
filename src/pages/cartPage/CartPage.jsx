@@ -4,7 +4,6 @@ import { MdChevronRight } from "react-icons/md";
 import { AuthContext } from "../../authProvider/AuthContextProvider";
 import SingleCart from "./SingleCart";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
 
 const CartPage = ({ AdminCardProduct }) => {
 

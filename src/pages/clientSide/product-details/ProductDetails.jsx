@@ -24,6 +24,7 @@ const ProductDetails = () => {
   const [Productimg, setproductimg] = useState(product.product_images[0]);
   const [index, setindex] = useState(0);
   const [color, setcolor] = useState(0);
+  const [totalquantity, settotalquantity] = useState(1);
   const { user, products } = useContext(AuthContext);
   const email = user?.email;
 
@@ -42,11 +43,21 @@ const ProductDetails = () => {
   const image = product_images[0];
   console.log(image);
 
+  const handleIncrease = () => {
+    settotalquantity(totalquantity + 1);
+  };
+
+  const handleDecrease = () => {
+    if (totalquantity > 1) {
+      settotalquantity(totalquantity - 1);
+    }
+  };
+
   const handleAddToCard = () => {
     const info = {
       productName: product_title,
       price: product_price,
-      quantity: 1,
+      quantity: totalquantity,
       product_size: product_size,
       photo: image,
       email: email,
@@ -237,7 +248,13 @@ const ProductDetails = () => {
 
           <div className=" p-4 my-3 pl-0 *:mr-3">
             <span className="bg-[#FF33331A] font-bold rounded-full px-3 py-1 text-[16px]">
-              - <span className="mx-7">1</span>+
+              <span onClick={handleDecrease} className="cursor-pointer">
+                -{" "}
+              </span>
+              <span className="mx-7">{totalquantity}</span>
+              <span onClick={handleIncrease} className="cursor-pointer">
+                +
+              </span>
             </span>
             <button
               onClick={handleAddToCard}

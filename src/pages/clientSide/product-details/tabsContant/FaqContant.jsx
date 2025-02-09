@@ -9,9 +9,15 @@ const FaqContant = () => {
 
 
     return (
-      <section className="bg-white dark:bg-gray-900">
+      <section
+        style={{ fontFamily: "IntegralCF, sans-serif" }}
+        className="bg-white dark:bg-gray-900"
+      >
         <div className="container px-6 py-12 mx-auto">
-          <h1 className="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white">
+          <h1
+            style={{ fontFamily: "IntegralCF, sans-serif" }}
+            className="text-2xl font-semibold text-gray-800 lg:text-3xl dark:text-white"
+          >
             Frequently asked questions
           </h1>
 

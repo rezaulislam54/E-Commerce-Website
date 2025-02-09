@@ -26,7 +26,6 @@ const RegisterPage = () => {
 
     signUpEmailAndPassword(email, password)
       .then((result) => {
-        console.log(result.user);
         updateUserProfile({ displayName: name, photoURL: image })
           .then(() => {
             setLoading(false);

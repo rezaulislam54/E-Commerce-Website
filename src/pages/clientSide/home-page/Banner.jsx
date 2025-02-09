@@ -15,7 +15,7 @@ const Banner = () => {
             transition={{ duration: 0.6 }}
             style={{ fontFamily: "IntegralCF, sans-serif" }}
             className={[
-              "text-4xl lg:text-[64px] lg:leading-[64px] mb-5 lg:mb-8 font-extrabold",
+              "text-4xl lg:text-[58px]  lg:leading-[64px] mb-5 lg:mb-8 font-extrabold",
             ]}
           >
             FIND CLOTHES THAT MATCHES YOUR STYLE
@@ -25,6 +25,7 @@ const Banner = () => {
             whileInView={{ y: "0", opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.6 }}
+            style={{ fontFamily: "IntegralCF, sans-serif" }}
             className="text-black/60 text-sm lg:text-base mb-6 lg:mb-8 max-w-[545px]"
           >
             Browse through our diverse range of meticulously crafted garments,
@@ -50,6 +51,7 @@ const Banner = () => {
             whileInView={{ y: "0", opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 1.5, duration: 0.6 }}
+            style={{ fontFamily: "IntegralCF, sans-serif" }}
             className="flex md:h-full md:max-h-11 lg:max-h-[52px] xl:max-h-[68px] items-center justify-center md:justify-start flex-wrap sm:flex-nowrap md:space-x-3 lg:space-x-6 xl:space-x-8 md:mb-[116px]"
           >
             <div className="flex flex-col">

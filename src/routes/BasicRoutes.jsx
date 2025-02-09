@@ -27,12 +27,15 @@ const router = createBrowserRouter([
         path: "/product/:id",
         element: <ProductDetails></ProductDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(
+            `https://e-commerce-server-nine-kohl.vercel.app/products/${params.id}`
+          ),
       },
       {
         path: "/category",
         element: <CategoryPage></CategoryPage>,
-        loader: () => fetch("http://localhost:5000/products"),
+        loader: () =>
+          fetch("https://e-commerce-server-nine-kohl.vercel.app/products"),
       },
       {
         path: "/new",

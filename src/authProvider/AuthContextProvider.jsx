@@ -21,7 +21,7 @@ const AuthContextProvider = ({ children }) => {
   const [products, setproducts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://e-commerce-server-nine-kohl.vercel.app/products")
       .then((response) => response.json())
       .then((data) => setproducts(data));
   }, []);

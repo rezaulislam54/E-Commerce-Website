@@ -16,15 +16,10 @@ const CartPage = ({ AdminCardProduct }) => {
   const { user } = useContext(AuthContext);
   const [Cartproducts, setCartProducts] = useState([]);
   const email = user.email;
-  const [totalPrice, setTotalPrice] = useState();
-  if (Cartproducts > 0) {
-    const totalPrice = Cartproducts.reduce((acc, item) => acc + item.price, 0);
-    setTotalPrice;
-    totalPrice;
-  }
+  const totalPrice = Cartproducts.reduce((acc, item) => acc + item.price, 0);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/carts/${user.email}`)
+    fetch(`https://e-commerce-server-nine-kohl.vercel.app/carts/${user.email}`)
       .then((response) => response.json())
       .then((data) => setCartProducts(data));
   }, [user]);
@@ -43,7 +38,7 @@ const CartPage = ({ AdminCardProduct }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${_id}`, {
+        fetch(`https://e-commerce-server-nine-kohl.vercel.app/carts/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -70,7 +65,7 @@ const CartPage = ({ AdminCardProduct }) => {
         const newQuantity = item.quantity + 1;
 
         // সার্ভারে আপডেট পাঠানো
-        fetch(`http://localhost:5000/carts/${id}`, {
+        fetch(`https://e-commerce-server-nine-kohl.vercel.app/carts/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +97,7 @@ const CartPage = ({ AdminCardProduct }) => {
         const newQuantity = item.quantity - 1;
 
         // সার্ভারে আপডেট পাঠানো
-        fetch(`http://localhost:5000/carts/${id}`, {
+        fetch(`https://e-commerce-server-nine-kohl.vercel.app/carts/${id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -126,34 +121,45 @@ const CartPage = ({ AdminCardProduct }) => {
     setCartProducts(updatedData);
   };
 
-  const handleAllCartDelete = (email) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/email/${email}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            setCartProducts("");
-            if (data.deleteCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success",
-              });
+  const handleAllCartDelete = (email, Cartproducts) => {
+    if (Cartproducts.length === 0) {
+      Swal.fire({
+        title: "warning",
+        text: "please Countine Shoping!",
+        icon: "warning",
+        confirmButtonText: "Ok",
+      });
+    } else {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(
+            `https://e-commerce-server-nine-kohl.vercel.app/carts/email/${email}`,
+            {
+              method: "DELETE",
             }
-          });
-      }
-    });
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.deleteCount > 0) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+              }
+            });
+        }
+      });
+    }
   };
 
   return (
@@ -329,7 +335,7 @@ const CartPage = ({ AdminCardProduct }) => {
         </div>
         <div>
           <button
-            onClick={() => handleAllCartDelete(email)}
+            onClick={() => handleAllCartDelete(email, Cartproducts)}
             className="bg-black px-5 py-2.5 text-white rounded-md"
           >
             <span className="inline-block mr-3">

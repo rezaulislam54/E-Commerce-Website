@@ -66,7 +66,7 @@ const ProductDetails = () => {
     console.log(info);
 
     if (user) {
-      fetch("http://localhost:5000/carts", {
+      fetch("https://e-commerce-server-nine-kohl.vercel.app/carts", {
         method: "POST",
         headers: {
           "content-type": "application/json",
